@@ -4,7 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
-import './bootstrapVue.scss'
+import './plugins/bootstrapVue'
 
 Vue.config.productionTip = false
 
