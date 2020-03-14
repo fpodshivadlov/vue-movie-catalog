@@ -1,7 +1,5 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-import Switcher from '../common/Switcher/Switcher.vue';
-
 export interface MovieItem {
   name: string;
   year: number;
@@ -9,7 +7,7 @@ export interface MovieItem {
   imageUrl: string;
 }
 
-@Component({ components: { Switcher }})
+@Component
 export default class SearchResult extends Vue {
 
   @Prop({ default: () => [] })

@@ -21,7 +21,7 @@
             class="search-form__submit-button"
             type="submit"
             size="lg"
-            block="true"
+            :block="true"
             variant="danger"
           >
             Search

@@ -1,6 +1,7 @@
 <template>
   <div class="search-page">
     <SearchForm />
+    <SearchSummary />
     <SearchResult />
   </div>
 </template>

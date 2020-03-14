@@ -1,33 +1,30 @@
 <template>
-  <div class="search-result">
-    <div class="search-form__summary">
-      <p v-if="resultItems.length">
-        {{ resultItems.length }} movie(s) found
-      </p>
-      <p>Sort by</p>
-      <Switcher
-        :options="[
-          { value: 'date', label: 'Release Date' },
-          { value: 'rating', label: 'Rating' },
-        ]"
-      />
-    </div>
-    <div v-if="resultItems.length" class="search-form__list">
-      <div
-        class="search-form__item"
+  <b-container class="search-result">
+    <b-row v-if="resultItems.length" class="search-result__list">
+      <b-col
         v-for="(item, index) in resultItems"
         :key="index"
+        class="search-result__item"
+        cols="4"
       >
-        <img :src="item.imageUrl"/>
-        <h3>{{ item.name }}</h3>
-        <p>{{ item.year }}</p>
-        <p>{{ item.genres.join(", ") }}</p>
-      </div>
-    </div>
-    <div v-else class="search-form__list">
-      No movies found
-    </div>
-  </div>
+        <img :src="item.imageUrl" />
+        <div class="d-flex justify-content-between py-1">
+          <div>
+            <div><h4>{{ item.name }}</h4></div>
+            <div><small>{{ item.genres.join(", ") }}</small></div>
+          </div>
+          <div class="search-result__year py-2">
+            <span class="border p-1">{{ item.year }}</span>
+          </div>
+        </div>
+      </b-col>
+    </b-row>
+    <b-row v-else class="search-result__not-found">
+      <b-col class="text-center">
+        <h2>No movies found</h2>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script src="./component.ts" lang="ts" />
