@@ -3,6 +3,15 @@ import Vuex, { Module } from 'vuex';
 
 import MovieApi from '@/services/MovieApi';
 import { RootState, SearchMoviesState } from '../types';
+import { initNames } from '../helpers';
+
+export const mutations = initNames({
+  updateSearchResult: null,
+});
+
+export const actions = initNames({
+  getItems: null,
+});
 
 const module: Module<SearchMoviesState, RootState> = {
   namespaced: true,
@@ -13,14 +22,14 @@ const module: Module<SearchMoviesState, RootState> = {
     }
   },
   mutations: {
-    updateSearchResult: (state, payload) => {
+    [mutations.updateSearchResult]: (state, payload) => {
       state.result = payload;
     },
   },
   actions: {
-    getItems: async (store, injectee) => {
+    [actions.getItems]: async (store, injectee) => {
       const searchResult = await MovieApi.getMovies();
-      store.commit("updateSearchResult", searchResult);
+      store.commit(mutations.updateSearchResult, searchResult);
     },
   },
 };

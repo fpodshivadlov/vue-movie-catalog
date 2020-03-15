@@ -6,6 +6,7 @@ import SearchForm from '@/components/SearchForm/SearchForm.vue'
 import SearchSummary from '@/components/SearchSummary/SearchSummary.vue'
 import SearchResult from '@/components/SearchResult/SearchResult.vue'
 import { MoviesSearchResult } from '@/data/types'
+import { actions } from '@/store/types'
 
 @Component({
   components: { SearchForm, SearchSummary, SearchResult },
@@ -16,6 +17,6 @@ export default class SearchPage extends Vue {
   }
 
   created() {
-    this.$storeTyped.dispatch("searchItems/getItems");
+    this.$storeTyped.dispatch(actions.searchItems.getItems);
   }
 }
