@@ -1,13 +1,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-export interface MovieItem {
-  name: string;
-  year: number;
-  genres: string[];
-  imageUrl: string;
-}
+import { MovieItem } from "../../data/types"
+import { filters } from "../../utils"
 
-@Component
+@Component({ 
+  filters: { year: filters.year },
+})
 export default class SearchResult extends Vue {
 
   @Prop({ default: () => [] })

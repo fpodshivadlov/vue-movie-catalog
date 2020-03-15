@@ -1,14 +1,14 @@
 <template>
   <div class="movie-overview">
     <div class="movie-overview__image">
-      <img :src="item.imageUrl"/>
+      <img :src="item.poster_path"/>
     </div>
     <div class="movie-overview__details">
-      <h1>{{ item.name }}</h1>
-      <p>Rating: {{ item.rating }}</p>
-      <p>Year: {{ item.year }}</p>
-      <p>Duration: {{ item.durationMinutes }} minutes</p>    
-      <p>{{ item.description }}</p>
+      <h1>{{ item.title }}</h1>
+      <p>Rating: {{ item.vote_average }}</p>
+      <p>Year: {{ item.release_date | year }}</p>
+      <p>Duration: {{ item.runtime }} minutes</p>    
+      <p>{{ item.overview }}</p>
     </div>
   </div>
 </template>

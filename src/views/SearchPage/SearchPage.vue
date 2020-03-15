@@ -2,7 +2,7 @@
   <div class="search-page">
     <SearchForm />
     <SearchSummary />
-    <SearchResult />
+    <SearchResult :resultItems="movies" />
   </div>
 </template>
 

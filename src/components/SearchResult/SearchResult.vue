@@ -1,20 +1,20 @@
 <template>
   <b-container class="search-result">
-    <b-row v-if="resultItems.length" class="search-result__list">
+    <b-row v-if="resultItems.length" class="search-result__list py-3">
       <b-col
-        v-for="(item, index) in resultItems"
-        :key="index"
+        v-for="item in resultItems"
+        :key="item.key"
         class="search-result__item"
         cols="4"
       >
-        <img :src="item.imageUrl" />
+        <img :src="item.poster_path" />
         <div class="d-flex justify-content-between py-1">
           <div>
-            <div><h4>{{ item.name }}</h4></div>
+            <div><h4>{{ item.title }}</h4></div>
             <div><small>{{ item.genres.join(", ") }}</small></div>
           </div>
           <div class="search-result__year py-2">
-            <span class="border p-1">{{ item.year }}</span>
+            <span class="border p-1">{{ item.release_date | year }}</span>
           </div>
         </div>
       </b-col>
