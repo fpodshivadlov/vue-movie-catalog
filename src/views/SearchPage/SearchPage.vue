@@ -1,8 +1,8 @@
 <template>
   <div class="search-page">
     <SearchForm />
-    <SearchSummary />
-    <SearchResult :resultItems="movies" />
+    <SearchSummary :totalFound="result.total" />
+    <SearchResult :resultItems="result.items" />
   </div>
 </template>
 

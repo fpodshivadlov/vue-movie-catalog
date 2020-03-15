@@ -12,3 +12,8 @@ export interface MovieItem {
   genres: string[];
   runtime: number;
 }
+
+export interface MoviesSearchResult {
+  items: MovieItem[];
+  total: number;
+}

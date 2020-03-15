@@ -1,16 +1,21 @@
 import { Component } from 'vue-property-decorator'
+import { mapState } from 'vuex'
 import { Vue } from '@/utils'
 
 import SearchForm from '@/components/SearchForm/SearchForm.vue'
 import SearchSummary from '@/components/SearchSummary/SearchSummary.vue'
 import SearchResult from '@/components/SearchResult/SearchResult.vue'
-import { MovieItem } from '@/data/types'
+import { MoviesSearchResult } from '@/data/types'
 
 @Component({
   components: { SearchForm, SearchSummary, SearchResult },
 })
 export default class SearchPage extends Vue {
-  get movies(): MovieItem[] {
-    return this.$storeTyped.state.items;
+  get result(): MoviesSearchResult {
+    return this.$storeTyped.state.searchItems.result;
+  }
+
+  created() {
+    this.$storeTyped.dispatch("searchItems/getItems");
   }
 }
