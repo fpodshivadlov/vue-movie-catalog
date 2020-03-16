@@ -17,3 +17,7 @@ export interface MoviesSearchResult {
   items: MovieItem[];
   total: number;
 }
+
+export interface SearchRequest {
+  searchText: string;
+}

@@ -12,7 +12,7 @@ export interface AllNamespacesNames {
 
 export const initNames = <TNsNames extends NamespaceNames>(ns: EmptyNamespaceNames<TNsNames>): TNsNames => {
   const result: NamespaceNames = {};
-  for (const [key, value] of Object.entries(ns)) {
+  for (const [key] of Object.entries(ns)) {
     result[key] = `${key}`;
   }
 

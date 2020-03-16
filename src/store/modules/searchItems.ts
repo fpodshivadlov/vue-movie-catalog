@@ -1,37 +1,43 @@
-import Vue from 'vue';
-import Vuex, { Module } from 'vuex';
+import { Module } from 'vuex';
 
+import { SearchRequest } from '@/data/types';
 import MovieApi from '@/services/MovieApi';
-import { RootState, SearchMoviesState } from '../types';
+import { RootState, SearchMoviesState, LoadStatus } from '../types';
 import { initNames } from '../helpers';
 
 export const mutations = initNames({
   updateSearchResult: null,
+  setStatus: null,
 });
 
 export const actions = initNames({
   getItems: null,
 });
 
-const module: Module<SearchMoviesState, RootState> = {
+export const module: Module<SearchMoviesState, RootState> = {
   namespaced: true,
   state: {
     result: {
       items: [],
       total: 0,
-    }
+    },
+    status: LoadStatus.NotLoaded,
   },
   mutations: {
     [mutations.updateSearchResult]: (state, payload) => {
       state.result = payload;
     },
+    [mutations.setStatus]: (state, payload) => {
+      state.status = payload;
+    },
   },
   actions: {
-    [actions.getItems]: async (store, injectee) => {
-      const searchResult = await MovieApi.getMovies();
+    [actions.getItems]: async (store, payload: SearchRequest) => {
+      store.commit(mutations.setStatus, LoadStatus.Loading);
+      const searchResult = await MovieApi.getMovies(payload);
+
       store.commit(mutations.updateSearchResult, searchResult);
+      store.commit(mutations.setStatus, LoadStatus.Loaded);
     },
   },
 };
-
-export default module;
