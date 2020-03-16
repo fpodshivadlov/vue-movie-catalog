@@ -1,0 +1,8 @@
+@import '@/styles/common.scss';
+
+.movie-overview {
+  &__rating {
+    height: 50px;
+    width: 50px;
+  }
+}
