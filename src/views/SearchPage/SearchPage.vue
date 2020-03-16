@@ -17,6 +17,7 @@
     <SearchResult
       v-if="status === LoadStatus.Loaded"
       :resultItems="result.items"
+      :getLocation="(id) => ({ name: 'details', params: { id: id }})"
     />
     <div v-if="status === LoadStatus.Loading" class="text-center p-5">
       <b-spinner classlabel="Spinning" />

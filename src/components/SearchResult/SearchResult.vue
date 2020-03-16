@@ -7,7 +7,9 @@
         class="search-result__item"
         cols="4"
       >
-        <img :src="item.poster_path" />
+        <router-link :to="getLocation(item.id)">
+          <img :src="item.poster_path" />
+        </router-link>
         <div class="d-flex justify-content-between py-1">
           <div>
             <div><h4>{{ item.title }}</h4></div>

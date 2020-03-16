@@ -1,19 +1,19 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter, { RouteConfig } from 'vue-router'
 import SearchPage from '../views/SearchPage/SearchPage.vue'
 import NotFoundPage from '../views/NotFoundPage/NotFoundPage.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
+const routes: RouteConfig[] = [
   {
     path: '/',
-    name: 'SearchPage',
-    component: SearchPage
+    name: 'home',
+    component: SearchPage,
   },
   {
     path: '/details/:id',
-    name: 'MoviePage',
+    name: 'details',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -21,7 +21,7 @@ const routes = [
   },
   {
     path: '*',
-    name: 'Not found',
+    name: 'not-found',
     component: NotFoundPage
   },  
 ]

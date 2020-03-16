@@ -1,6 +1,5 @@
 import { Module } from 'vuex';
 
-import { SearchRequest } from '@/data/types';
 import MovieApi from '@/services/MovieApi';
 import { RootState, LoadStatus, GetMovieState } from '../types';
 import { initNames } from '../helpers';
