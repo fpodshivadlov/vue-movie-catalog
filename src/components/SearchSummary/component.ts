@@ -8,4 +8,6 @@ export default class SearchSummary extends Vue {
   @Prop({ default: 0 })
   totalFound!: number;
 
+  sortBy = "date";
+
 }

@@ -3,6 +3,9 @@
     <SearchForm
       :searchText="searchText"
       @update:searchText="searchText = $event"
+      :searchByOptions="searchByOptions"
+      :searchBy="searchByValue"
+      @update:searchBy="searchByValue = $event; search()"
       @search-action="search"
     />
     <SearchSummary 

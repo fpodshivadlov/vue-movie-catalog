@@ -7,6 +7,7 @@
       <b-col class="search-summary__sort d-flex flex-row">
         <div>Sort by</div>
         <Switcher class="px-3"
+          v-model="sortBy"
           :options="[
             { value: 'date', label: 'Release Date' },
             { value: 'rating', label: 'Rating' },

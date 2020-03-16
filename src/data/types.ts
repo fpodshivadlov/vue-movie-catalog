@@ -18,6 +18,19 @@ export interface MoviesSearchResult {
   total: number;
 }
 
+export enum SearchBy {
+  Title = "title",
+  Genres = "genres",
+}
+
+export enum SortBy {
+  Title = "title",
+  ReleaseDate = "release_date",
+  Rating = "vote_average",
+}
+
 export interface SearchRequest {
   searchText: string;
+  searchBy: SearchBy;
+  sortBy?: SortBy;
 }

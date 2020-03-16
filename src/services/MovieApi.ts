@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MoviesSearchResult, SearchRequest } from '../data/types';
+import { MoviesSearchResult, SearchRequest, SortBy } from '../data/types';
 
 const baseUrl = "http://react-cdp-api.herokuapp.com/";
 const instance = axios.create({
@@ -10,10 +10,10 @@ export default {
   getMovies: async (searchRequest: SearchRequest) => {
     return await instance.get('/movies', {
       params: {
-        sortBy: "title",
+        sortBy: searchRequest?.searchText ?? SortBy.Title,
         sortOrder: "asc",
         search: searchRequest?.searchText,
-        searchBy: "title",
+        searchBy: searchRequest?.searchBy,
         filter: null,
         offset: 0,
         limit: 10,

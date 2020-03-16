@@ -3,9 +3,10 @@
     <b-button-group size="sm">
       <b-button
         class="switcher__button"
-        v-for="(option, index) in options"
+        v-for="(option) in options"
         :key="option.value"
-        :variant="index == 0 ? 'danger' : 'secondary'"
+        :variant="option.value === selectedValue ? 'danger' : 'secondary'"
+        @click="setValue(option.value)"
       >
         {{ option.label }}
       </b-button>

@@ -35,10 +35,8 @@
       <b-col cols="auto">
         <Switcher
           class="search-form__switcher"
-          :options="[
-            { value: 'title', label: 'Title' },
-            { value: 'genre', label: 'Genre' },
-          ]"
+          v-model="searchBySynced"
+          :options="searchByOptions"
         />
       </b-col>
     </b-row>

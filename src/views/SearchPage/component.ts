@@ -1,13 +1,15 @@
 import { Emit, Component } from 'vue-property-decorator'
 import { BvEvent } from 'bootstrap-vue'
+
 import { Vue } from '@/utils'
+import { MoviesSearchResult, SearchBy } from '@/data/types'
+import { LoadStatus } from '@/store/types'
+import { actions } from '@/store'
 
 import SearchForm from '@/components/SearchForm/SearchForm.vue'
 import SearchSummary from '@/components/SearchSummary/SearchSummary.vue'
 import SearchResult from '@/components/SearchResult/SearchResult.vue'
-import { MoviesSearchResult } from '@/data/types'
-import { LoadStatus } from '@/store/types'
-import { actions } from '@/store'
+import { SwitcherOption } from '@/components/common/Switcher/component'
 
 @Component({
   components: { SearchForm, SearchSummary, SearchResult },
@@ -25,18 +27,26 @@ export default class SearchPage extends Vue {
 
   searchText = '';
 
+  searchByValue: SearchBy = SearchBy.Title;
+  searchByOptions: SwitcherOption[] = [
+    { value: SearchBy.Title, label: 'Title' },
+    { value: SearchBy.Genres, label: 'Genres' },
+  ];
+
   @Emit()
   onInputChange(event: BvEvent) {
     return event.target.value;
   }
 
-  search() {
-    this.$storeTyped.dispatch(actions.searchItems.getItems, {
-      searchText: this.searchText,
-    });
-  }
-
   created() {
     this.$storeTyped.dispatch(actions.searchItems.getItems);
   }
+
+  search() {
+    this.$storeTyped.dispatch(actions.searchItems.getItems, {
+      searchText: this.searchText,
+      searchBy: this.searchByValue,
+    });
+  }
+
 }
