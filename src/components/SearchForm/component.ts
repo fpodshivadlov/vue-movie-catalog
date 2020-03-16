@@ -9,7 +9,7 @@ export default class SearchForm extends Vue {
   @PropSync('searchText', { default: '' })
   searchTextSynced!: string;
 
-  @Prop({ default: [] })
+  @Prop({ default: () => [] })
   searchByOptions!: SwitcherOption[];
 
   @PropSync('searchBy', { default: '' })

@@ -10,6 +10,9 @@
     />
     <SearchSummary 
       :totalFound="result.total"
+      :sortByOptions="sortByOptions"
+      :sortBy="sortByValue"
+      @update:sortBy="sortByValue = $event; search()"
     />
     <SearchResult
       v-if="status === LoadStatus.Loaded"

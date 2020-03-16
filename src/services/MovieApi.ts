@@ -10,8 +10,8 @@ export default {
   getMovies: async (searchRequest: SearchRequest) => {
     return await instance.get('/movies', {
       params: {
-        sortBy: searchRequest?.searchText ?? SortBy.Title,
-        sortOrder: "asc",
+        sortBy: searchRequest?.sortBy,
+        sortOrder: searchRequest?.sortOrder,
         search: searchRequest?.searchText,
         searchBy: searchRequest?.searchBy,
         filter: null,

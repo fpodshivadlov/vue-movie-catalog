@@ -8,7 +8,7 @@ export interface SwitcherOption {
 @Component
 export default class Switcher extends Vue {
 
-  @Prop({ default: [] })
+  @Prop({ default: () => [] })
   options!: SwitcherOption[];
 
   @Model('change', { required: true })

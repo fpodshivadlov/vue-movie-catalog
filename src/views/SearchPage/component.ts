@@ -2,7 +2,7 @@ import { Emit, Component } from 'vue-property-decorator'
 import { BvEvent } from 'bootstrap-vue'
 
 import { Vue } from '@/utils'
-import { MoviesSearchResult, SearchBy } from '@/data/types'
+import { MoviesSearchResult, SearchBy, SortBy, SearchRequest, SortOrder } from '@/data/types'
 import { LoadStatus } from '@/store/types'
 import { actions } from '@/store'
 
@@ -33,6 +33,13 @@ export default class SearchPage extends Vue {
     { value: SearchBy.Genres, label: 'Genres' },
   ];
 
+  sortByValue: SortBy = SortBy.Title;
+  sortByOptions: SwitcherOption[] = [
+    { value: SortBy.Title, label: 'Title' },
+    { value: SortBy.ReleaseDate, label: 'Date' },
+    { value: SortBy.Rating, label: 'Rating' },
+  ];
+
   @Emit()
   onInputChange(event: BvEvent) {
     return event.target.value;
@@ -43,10 +50,18 @@ export default class SearchPage extends Vue {
   }
 
   search() {
-    this.$storeTyped.dispatch(actions.searchItems.getItems, {
+    const payload: SearchRequest = {
       searchText: this.searchText,
       searchBy: this.searchByValue,
-    });
+      sortBy: this.sortByValue,
+      sortOrder: this.getSortOrder(this.sortByValue),
+    };
+
+    this.$storeTyped.dispatch(actions.searchItems.getItems, payload);
+  }
+
+  getSortOrder(sortBy: SortBy) {
+    return sortBy === SortBy.Rating || sortBy === SortBy.ReleaseDate ? SortOrder.Desc : SortOrder.Asc;
   }
 
 }

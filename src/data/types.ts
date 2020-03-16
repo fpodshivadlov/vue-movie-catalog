@@ -29,8 +29,14 @@ export enum SortBy {
   Rating = "vote_average",
 }
 
+export enum SortOrder {
+  Asc = "asc",
+  Desc = "desc",
+}
+
 export interface SearchRequest {
   searchText: string;
   searchBy: SearchBy;
-  sortBy?: SortBy;
+  sortBy: SortBy;
+  sortOrder: SortOrder;
 }

@@ -2,16 +2,13 @@
   <b-container>
     <b-row class="search-summary">
       <b-col cols="6" class="search-summary__count">
-        <div  v-if="totalFound">{{ totalFound }} movie(s) found</div>
+        <div v-if="totalFound">{{ totalFound }} movie(s) found</div>
       </b-col>
       <b-col class="search-summary__sort d-flex flex-row">
         <div>Sort by</div>
         <Switcher class="px-3"
-          v-model="sortBy"
-          :options="[
-            { value: 'date', label: 'Release Date' },
-            { value: 'rating', label: 'Rating' },
-          ]"
+          v-model="sortBySynced"
+          :options="sortByOptions"
         />
       </b-col>
     </b-row>
