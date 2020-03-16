@@ -1,17 +1,26 @@
+import { Component } from 'vue-property-decorator';
+import { Vue } from '@/utils';
+
+import { LoadStatus } from '@/store/types';
 import MovieOverview from '@/components/MovieOverview/MovieOverview.vue'
-import { MovieItem } from '@/data/types'
-import movies from '@/data/movies'
+import { actions } from '@/store';
 
-const movieItem: MovieItem = movies[0];
+@Component({
+  components: { MovieOverview },
+})
+export default class MoviePage extends Vue {
+  LoadStatus = LoadStatus;
 
-export default {
-  name: 'MoviePage',
-  data: () => {
-    return {
-      movieItem,
-    };
-  },
-  components: {
-    MovieOverview,
+  get movieItem() {
+    return this.$storeTyped.state.getItem.item;
+  }
+
+  get status(): LoadStatus {
+    return this.$storeTyped.state.getItem.status;
+  }
+
+  created() {
+    const id = this.$route.params.id;
+    this.$storeTyped.dispatch(actions.getItem.getItem, id);
   }
 }

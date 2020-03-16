@@ -1,6 +1,14 @@
 @import '@/styles/common.scss';
 
 .movie-overview {
+  background-color: $dark-graphite;
+  padding: 30px 50px;
+
+  background-image: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9) ), url('../../assets/movies-background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
   &__rating {
     height: 50px;
     width: 50px;

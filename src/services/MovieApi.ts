@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MoviesSearchResult, SearchRequest, SortBy } from '../data/types';
+import { MoviesSearchResult, SearchRequest, MovieItem } from '../data/types';
 
 const baseUrl = "http://react-cdp-api.herokuapp.com/";
 const instance = axios.create({
@@ -23,6 +23,13 @@ export default {
         items: response.data.data,
         total: response.data.total,
       };
+      return result;
+    });
+  },
+
+  getMovie: async (id: string) => {
+    return await instance.get(`/movies/${id}`).then(response => {
+      const result: MovieItem = response.data;
       return result;
     });
   }

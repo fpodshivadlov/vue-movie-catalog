@@ -1,4 +1,4 @@
-import { MoviesSearchResult } from '../data/types';
+import { MoviesSearchResult, MovieItem } from '../data/types';
 
 export enum LoadStatus {
   NotLoaded = "NotLoaded",
@@ -11,6 +11,12 @@ export interface SearchMoviesState {
   status: LoadStatus;
 }
 
+export interface GetMovieState {
+  item?: MovieItem;
+  status: LoadStatus;
+}
+
 export interface RootState {
   searchItems: SearchMoviesState;
+  getItem: GetMovieState;
 }

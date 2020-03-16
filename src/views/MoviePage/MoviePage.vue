@@ -1,6 +1,13 @@
 <template>
-  <div class="search-page">
-    <MovieOverview :item="movieItem" />
+  <div class="movie-page">
+    <div v-if="status === LoadStatus.Loading" class="text-center p-5">
+      <b-spinner classlabel="Spinning" />
+    </div>
+
+    <MovieOverview
+      v-if="status === LoadStatus.Loaded"
+      :item="movieItem"
+    />
   </div>
 </template>
 

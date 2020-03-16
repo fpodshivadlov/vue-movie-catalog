@@ -3,6 +3,8 @@
 // colors
 $crimson: #f65261;
 $green: #a1e66f;
+$dark-blue: #008ac6;
+$blue: #79d0ff;
 $dark-grey: #424242;
 $dark-graphite: #222222;
 $light-graphite: #555555;
@@ -15,12 +17,13 @@ $font-family-monospace: 'Fira Mono', monospace;
 $font-family-base: 'Poiret One', cursive;
 $font-size-base: 1.25rem;
 
+$theme-colors: (
+  "primary": $blue,
+  "danger": $crimson,
+  "success": $green,
+);
+
 $input-bg: $dark-graphite;
 $body-bg: $dark-grey;
 $body-color: $white;
 $input-border-width: 0;
-
-$theme-colors: (
-  "primary": $dark-graphite,
-  "danger": $crimson,
-);
