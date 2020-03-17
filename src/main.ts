@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import './plugins/bootstrapVue'
 
-import App from './views/App/App.vue'
+import App from './views/_App/_App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
