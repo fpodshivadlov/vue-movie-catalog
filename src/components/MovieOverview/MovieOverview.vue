@@ -1,9 +1,9 @@
 <template>
-  <div class="movie-overview">
-    <div class="movie-overview__right-top">
+  <HeaderBlock>
+    <template v-slot:right-top>
       <slot name="right-top" />
-    </div>
-    <b-container>
+    </template>
+    <b-container class="movie-overview">
       <b-row>
         <b-col cols="4" class="movie-overview__image">
           <img :src="item.poster_path" class="img-fluid" />
@@ -37,7 +37,7 @@
         </b-col>
       </b-row>
     </b-container>
-  </div>
+  </HeaderBlock>
 </template>
 
 <script src="./component.ts" lang="ts" />
