@@ -4,13 +4,11 @@
       <b-col cols="6" class="search-summary__count">
         <div v-if="totalFound">{{ totalFound }} movie(s) found</div>
       </b-col>
-      <b-col class="search-summary__sort d-flex flex-row">
-        <div>Sort by</div>
-        <ButtonToggle class="px-3"
-          v-model="sortBySynced"
-          :options="sortByOptions"
-        />
-      </b-col>
+      <ButtonToggle class="px-3"
+        label="Sort by"
+        v-model="sortBySynced"
+        :options="sortByOptions"
+      />
     </b-row>
   </b-container>
 </template>

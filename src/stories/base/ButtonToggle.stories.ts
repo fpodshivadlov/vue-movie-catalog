@@ -24,7 +24,8 @@ storiesOf('Base', module)
       };
     },
     template: `<div>
-      <ButtonToggle 
+      <ButtonToggle
+        label="Select options:"
         :options="options"
         v-model="selectedOption"
       />

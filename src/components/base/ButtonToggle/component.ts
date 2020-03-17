@@ -8,6 +8,9 @@ export interface ButtonToggleOption {
 @Component
 export default class ButtonToggle extends Vue {
 
+  @Prop()
+  label!: string;
+
   @Prop({ default: () => [] })
   options!: ButtonToggleOption[];
 

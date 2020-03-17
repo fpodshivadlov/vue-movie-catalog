@@ -31,11 +31,8 @@
       </b-row>
       <b-row class="search-form__options">
         <b-col cols="auto">
-          <div>Search by</div>
-        </b-col>
-        <b-col cols="auto">
           <ButtonToggle
-            class="search-form__switcher"
+            label="Search by"
             v-model="searchBySynced"
             :options="searchByOptions"
           />
