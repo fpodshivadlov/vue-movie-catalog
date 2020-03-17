@@ -3,7 +3,6 @@
     <div v-if="label">{{ label }}</div>
     <b-button-group size="sm" class="px-3">
       <b-button
-        class="button-toggle__button"
         v-for="(option) in options"
         :key="option.value"
         :variant="option.value === selectedValue ? 'danger' : 'secondary'"

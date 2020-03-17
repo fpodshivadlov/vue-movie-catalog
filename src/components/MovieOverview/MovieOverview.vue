@@ -1,14 +1,14 @@
 <template>
-  <HeaderBlock>
+  <HeaderBlock class="movie-overview">
     <template v-slot:right-top>
       <slot name="right-top" />
     </template>
-    <b-container v-if="item" class="movie-overview">
+    <b-container v-if="item">
       <b-row>
-        <b-col cols="4" class="movie-overview__image">
+        <b-col cols="4">
           <img :src="item.poster_path" class="img-fluid" />
         </b-col>
-        <b-col cols="8" class="movie-overview__details align-self-center">
+        <b-col cols="8" class="align-self-center">
           <div class="d-flex align-items-center">
             <h1>{{ item.title }}</h1>
             <div

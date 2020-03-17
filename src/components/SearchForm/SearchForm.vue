@@ -1,15 +1,14 @@
 <template>
   <HeaderBlock>
     <b-container class="search-form">
-      <b-row class="search-form__title">
+      <b-row class="py-3 text-uppercase">
         <b-col cols="auto">
           <h1>Find your movie</h1>
         </b-col>
       </b-row>
-      <b-row class="search-form__input-group">
+      <b-row>
         <b-col md="9">
           <b-form-input
-            class="search-form__text-input"
             size="lg"
             v-model="searchTextSynced"
             placeholder="Search..."
@@ -18,7 +17,7 @@
         </b-col>
         <b-col md="3">
           <b-button
-            class="search-form__submit-button"
+            class="text-uppercase"
             type="submit"
             size="lg"
             :block="true"
@@ -29,7 +28,7 @@
           </b-button>
         </b-col>
       </b-row>
-      <b-row class="search-form__options">
+      <b-row class="py-3">
         <b-col cols="auto">
           <ButtonToggle
             label="Search by"

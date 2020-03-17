@@ -1,7 +1,7 @@
 <template>
   <div class="search-result">
     <b-container class="py-4">
-      <b-row v-if="items.length" class="search-result__list">
+      <b-row v-if="items.length">
         <b-col
           v-for="item in items"
           :key="item.key"
@@ -16,7 +16,7 @@
               <div><h4>{{ item.title }}</h4></div>
               <div><small>{{ item.genres.join(", ") }}</small></div>
             </div>
-            <div class="search-result__year py-2">
+            <div class="py-2">
               <span class="border p-1">{{ item.release_date | year }}</span>
             </div>
           </div>
