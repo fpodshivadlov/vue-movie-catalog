@@ -8,6 +8,7 @@ storiesOf('Search Form', module)
     components: { SearchForm },
     data: () => ({
       searchText: "text",
+      searchBy: "title",
     }),
     methods: {
       searchClick: function () {
@@ -19,5 +20,11 @@ storiesOf('Search Form', module)
       :searchText="searchText"
       @update:searchText="searchText = $event"
       @search-action="searchClick"
+      :searchByOptions="[
+        { value: 'title', label: 'Title' },
+        { value: 'genres', label: 'Genres' },
+      ]"
+      :searchBy="searchBy"
+      @update:searchBy="searchBy = $event"
     />`,
   }));
