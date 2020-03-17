@@ -6,7 +6,7 @@
       </b-col>
       <b-col class="search-summary__sort d-flex flex-row">
         <div>Sort by</div>
-        <Switcher class="px-3"
+        <ButtonToggle class="px-3"
           v-model="sortBySynced"
           :options="sortByOptions"
         />

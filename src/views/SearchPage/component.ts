@@ -9,7 +9,7 @@ import { actions } from '@/store'
 import SearchForm from '@/components/SearchForm/SearchForm.vue'
 import SearchSummary from '@/components/SearchSummary/SearchSummary.vue'
 import MovieList from '@/components/MovieList/MovieList.vue'
-import { SwitcherOption } from '@/components/common/Switcher/component'
+import { ButtonToggleOption } from '@/components/base/ButtonToggle/component'
 
 @Component({
   components: { SearchForm, SearchSummary, MovieList },
@@ -28,13 +28,13 @@ export default class SearchPage extends Vue {
   searchText = '';
 
   searchByValue: SearchBy = SearchBy.Title;
-  searchByOptions: SwitcherOption[] = [
+  searchByOptions: ButtonToggleOption[] = [
     { value: SearchBy.Title, label: 'Title' },
     { value: SearchBy.Genres, label: 'Genres' },
   ];
 
   sortByValue: SortBy = SortBy.Title;
-  sortByOptions: SwitcherOption[] = [
+  sortByOptions: ButtonToggleOption[] = [
     { value: SortBy.Title, label: 'Title' },
     { value: SortBy.ReleaseDate, label: 'Date' },
     { value: SortBy.Rating, label: 'Rating' },

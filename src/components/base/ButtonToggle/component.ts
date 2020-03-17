@@ -1,15 +1,15 @@
 import { Component, Prop, Vue, Model, Emit } from 'vue-property-decorator';
 
-export interface SwitcherOption {
+export interface ButtonToggleOption {
   value: string;
   label: string;
 }
 
 @Component
-export default class Switcher extends Vue {
+export default class ButtonToggle extends Vue {
 
   @Prop({ default: () => [] })
-  options!: SwitcherOption[];
+  options!: ButtonToggleOption[];
 
   @Model('change', { required: true })
   selectedValue!: string;

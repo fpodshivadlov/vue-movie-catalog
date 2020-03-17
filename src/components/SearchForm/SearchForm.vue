@@ -33,7 +33,7 @@
         <div>Search by</div>
       </b-col>
       <b-col cols="auto">
-        <Switcher
+        <ButtonToggle
           class="search-form__switcher"
           v-model="searchBySynced"
           :options="searchByOptions"
