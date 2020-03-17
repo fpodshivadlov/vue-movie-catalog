@@ -33,6 +33,9 @@ export const module: Module<GetMovieState, RootState> = {
 
       store.commit(mutations.updateItem, item);
       store.commit(mutations.setStatus, LoadStatus.Loaded);
+
+      // ToDo: investigate for types names
+      store.dispatch("getGenres/getItems", item.genres, { root: true });
     },
   },
 };

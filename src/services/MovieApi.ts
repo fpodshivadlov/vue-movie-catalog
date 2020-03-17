@@ -16,7 +16,7 @@ export default {
         searchBy: searchRequest?.searchBy,
         filter: null,
         offset: 0,
-        limit: 10,
+        limit: searchRequest?.limit ?? 10,
       },
     }).then(response => {
       const result: MoviesSearchResult = {

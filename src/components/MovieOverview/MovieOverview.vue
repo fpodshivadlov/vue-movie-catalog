@@ -3,7 +3,7 @@
     <template v-slot:right-top>
       <slot name="right-top" />
     </template>
-    <b-container class="movie-overview">
+    <b-container v-if="item" class="movie-overview">
       <b-row>
         <b-col cols="4" class="movie-overview__image">
           <img :src="item.poster_path" class="img-fluid" />

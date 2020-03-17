@@ -16,7 +16,18 @@ export interface GetMovieState {
   status: LoadStatus;
 }
 
+export interface GenreData {
+  name: string;
+  items: MovieItem[];
+}
+
+export interface GetGenresState {
+  items: GenreData[];
+  status: LoadStatus;
+}
+
 export interface RootState {
   searchItems: SearchMoviesState;
   getItem: GetMovieState;
+  getGenres: GetGenresState;
 }

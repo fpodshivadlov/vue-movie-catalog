@@ -11,7 +11,7 @@ import HeaderBlock from '../base/HeaderBlock/HeaderBlock.vue';
 })
 export default class MovieOverview extends Vue {
 
-  @Prop()
+  @Prop({ required: true })
   item!: MovieItem;
 
 }

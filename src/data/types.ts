@@ -39,4 +39,5 @@ export interface SearchRequest {
   searchBy: SearchBy;
   sortBy: SortBy;
   sortOrder: SortOrder;
+  limit?: number;
 }

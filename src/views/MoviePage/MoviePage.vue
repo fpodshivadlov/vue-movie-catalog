@@ -14,6 +14,16 @@
         </router-link>
       </template>
     </MovieOverview>
+
+    <div v-for="(genre, index) in genres" :key="index">
+      <SubHeaderBlock v-if="genre.items">
+        <b>See also best movies of {{ genre.name }}</b>
+      </SubHeaderBlock>
+      <MovieList
+        :items="genre.items"
+        :getLocation="(id) => ({ name: 'details', params: { id: id }})"
+      />
+    </div>
   </div>
 </template>
 
