@@ -1,45 +1,49 @@
-import Vue from 'vue';
-import { Module } from 'vuex';
+import { Actions, Getters, Mutations, Module, createMapper } from 'vuex-smart-module'
 
-import { SearchBy, SortBy, SortOrder } from '@/data/types';
+import { MovieItem, SearchBy, SortBy, SortOrder } from '@/data/types';
 import MovieApi from '@/services/MovieApi';
-import { initNames, nameOf } from '../helpers';
-import { RootState, LoadStatus, GetGenresState, GenreData } from '../types';
 
-export const mutations = initNames({
-  clearList: null,
-  addToList: null,
-  setStatus: null,
-});
+import { LoadStatus } from '../types';
+import { setState } from '../helpers';
 
-export const actions = initNames({
-  getItems: null,
-});
+interface GenreData {
+  name: string;
+  items: MovieItem[];
+}
 
-export const module: Module<GetGenresState, RootState> = {
-  namespaced: true,
-  state: {
-    items: [],
-    status: LoadStatus.NotLoaded,
-  },
-  mutations: {
-    [mutations.clearList]: (state) => {
-      state.items = [];
-    },
-    [mutations.addToList]: (state, payload: GenreData) => {
-      state.items.push(payload);
-    },
-    [mutations.setStatus]: (state, payload) => {
-      Vue.set(state, nameOf<GetGenresState>('status'), payload);
-      state.status = payload;
-    },
-  },
-  actions: {
-    [actions.getItems]: async (store, payload: string[]) => {
-      store.commit(mutations.setStatus, LoadStatus.Loading);
+class GetGenresState {
+  genres: GenreData[] = [];
+  status = LoadStatus.NotLoaded;
+}
+
+class GetGenresGetters extends Getters<GetGenresState> {
+}
+
+class GetGenresMutations extends Mutations<GetGenresState> {
+  clearList() {
+    setState(this.state, 'genres', []);
+  }
+
+  addToList(payload: GenreData) {
+    this.state.genres.push(payload);
+  }
+
+  setStatus(payload: LoadStatus) {
+    setState(this.state, 'status', payload);
+  }
+}
+
+class GetGenresActions extends Actions<
+  GetGenresState,
+  GetGenresGetters,
+  GetGenresMutations,
+  GetGenresActions
+> {
+  async getItems(payload?: string[]) {
+    this.commit("setStatus", LoadStatus.Loading);
 
       if (payload) {
-        store.commit(mutations.clearList);
+        this.commit("clearList");
         
         const promises = payload.map(async (name) => {
           const result = await MovieApi.getMovies({
@@ -50,16 +54,25 @@ export const module: Module<GetGenresState, RootState> = {
             limit: 3,
           });
 
-          store.commit(mutations.addToList, {
+          this.commit("addToList", {
             name,
             items: result.items,
-          } as GenreData);
+          });
         });
 
         await Promise.all(promises);
       }
 
-      store.commit(mutations.setStatus, LoadStatus.Loaded);
-    },
-  },
-};
+    this.commit("setStatus", LoadStatus.Loaded);
+  }
+}
+
+export const getGenres = new Module({
+  namespaced: true,
+  state: GetGenresState,
+  mutations: GetGenresMutations,
+  getters: GetGenresGetters,
+  actions: GetGenresActions,
+});
+
+export const getGenresMapper = createMapper(getGenres);

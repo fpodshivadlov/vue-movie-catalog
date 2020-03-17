@@ -1,42 +1,60 @@
-import Vue from 'vue';
-import { Module } from 'vuex';
+import { Store } from 'vuex';
+import { Actions, Getters, Mutations, Module, createMapper, Context } from 'vuex-smart-module'
 
+import { MovieItem } from '@/data/types';
 import MovieApi from '@/services/MovieApi';
-import { initNames, nameOf } from '../helpers';
-import { RootState, LoadStatus, GetMovieState } from '../types';
 
-export const mutations = initNames({
-  updateItem: null,
-  setStatus: null,
-});
+import { LoadStatus } from '../types';
+import { getGenres } from './getGenres';
+import { setState } from '../helpers';
 
-export const actions = initNames({
-  getItem: null,
-});
+class GetMovieState {
+  item: MovieItem | null = null;
+  status = LoadStatus.NotLoaded;
+}
 
-export const module: Module<GetMovieState, RootState> = {
+class GetMovieGetters extends Getters<GetMovieState> {
+}
+
+class GetMovieMutations extends Mutations<GetMovieState> {
+  updateItem(payload: MovieItem) {
+    setState(this.state, 'item', payload);
+  }
+
+  setStatus(payload: LoadStatus) {
+    setState(this.state, 'status', payload);
+  }
+}
+
+class GetMovieActions extends Actions<
+  GetMovieState,
+  GetMovieGetters,
+  GetMovieMutations,
+  GetMovieActions
+> {
+  getGenres!: Context<typeof getGenres>;
+
+  $init(store: Store<unknown>): void {
+    this.getGenres = getGenres.context(store);
+  }
+
+  async getItem(payload: string) {
+    this.commit("setStatus", LoadStatus.Loading);
+    const item = await MovieApi.getMovie(payload);
+
+    this.commit("updateItem", item);
+    this.commit("setStatus", LoadStatus.Loaded);
+
+    this.getGenres.dispatch("getItems", item.genres);
+  }
+}
+
+export const getMovie = new Module({
   namespaced: true,
-  state: {
-    status: LoadStatus.NotLoaded,
-  },
-  mutations: {
-    [mutations.updateItem]: function(state, payload) {
-      Vue.set(state, nameOf<GetMovieState>('item'), payload);
-    },
-    [mutations.setStatus]: (state, payload) => {
-      Vue.set(state, nameOf<GetMovieState>('status'), payload);
-    },
-  },
-  actions: {
-    [actions.getItem]: async (store, payload: string) => {
-      store.commit(mutations.setStatus, LoadStatus.Loading);
-      const item = await MovieApi.getMovie(payload);
+  state: GetMovieState,
+  mutations: GetMovieMutations,
+  getters: GetMovieGetters,
+  actions: GetMovieActions,
+});
 
-      store.commit(mutations.updateItem, item);
-      store.commit(mutations.setStatus, LoadStatus.Loaded);
-
-      // ToDo: investigate for types names
-      store.dispatch("getGenres/getItems", item.genres, { root: true });
-    },
-  },
-};
+export const getMovieMapper = createMapper(getMovie);

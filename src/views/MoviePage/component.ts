@@ -1,17 +1,31 @@
+import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
-import { Vue } from '@/utils';
 
-import { LoadStatus } from '@/store/types';
-import { actions } from '@/store';
+import { LoadStatus, getMovieMapper, getGenresMapper } from '@/store';
 
 import SubHeaderBlock from '@/components/base/SubHeaderBlock/SubHeaderBlock.vue';
 import MovieList from '@/components/MovieList/MovieList.vue';
 import MovieOverview from '@/components/MovieOverview/MovieOverview.vue';
 
+const Mappers = Vue.extend({
+  computed: {
+    ...getMovieMapper.mapState({
+      movieItem: (state) => state.item,
+      status: (state) => state.status
+    }),
+    ...getGenresMapper.mapState({
+      genres: (state) => state.genres,
+    }),
+  },
+  methods: getMovieMapper.mapActions({
+    getItem: 'getItem',
+  }),
+});
+
 @Component({
   components: { SubHeaderBlock, MovieList, MovieOverview },
 })
-export default class MoviePage extends Vue {
+export default class MoviePage extends Mappers {
   LoadStatus = LoadStatus;
 
   get movieId() {
@@ -20,18 +34,6 @@ export default class MoviePage extends Vue {
 
   @Watch('movieId', { immediate: true })
   onMovieChanged(movieId: string) {
-    this.$storeTyped.dispatch(actions.getItem.getItem, movieId);
-  }
-
-  get movieItem() {
-    return this.$storeTyped.state.getItem.item;
-  }
-
-  get status(): LoadStatus {
-    return this.$storeTyped.state.getItem.status;
-  }
-
-  get genres() {
-    return this.$storeTyped.state.getGenres.items;
+    this.getItem(movieId);
   }
 }

@@ -7,7 +7,7 @@ const instance = axios.create({
 });
 
 export default {
-  getMovies: async (searchRequest: SearchRequest) => {
+  getMovies: async (searchRequest?: SearchRequest) => {
     return await instance.get('/movies', {
       params: {
         sortBy: searchRequest?.sortBy,

@@ -1,10 +1,9 @@
+import Vue from 'vue'
 import { Emit, Component } from 'vue-property-decorator'
 import { BvEvent } from 'bootstrap-vue'
 
-import { Vue } from '@/utils'
-import { MoviesSearchResult, SearchBy, SortBy, SearchRequest, SortOrder } from '@/data/types'
-import { LoadStatus } from '@/store/types'
-import { actions } from '@/store'
+import { SearchBy, SortBy, SearchRequest, SortOrder } from '@/data/types'
+import { LoadStatus, searchMoviesMapper } from '@/store'
 
 import SubHeaderBlock from '@/components/base/SubHeaderBlock/SubHeaderBlock.vue'
 import ButtonToggle from '@/components/base/ButtonToggle/ButtonToggle.vue'
@@ -13,19 +12,21 @@ import SearchSummary from '@/components/SearchSummary/SearchSummary.vue'
 import MovieList from '@/components/MovieList/MovieList.vue'
 import { ButtonToggleOption } from '@/components/base/ButtonToggle/component'
 
+const Mappers = Vue.extend({
+  computed: searchMoviesMapper.mapState({
+    result: (state) => state.result,
+    status: (state) => state.status,
+  }),
+  methods: searchMoviesMapper.mapActions({
+    dispatchGetItems: 'getItems',
+  }),
+});
+
 @Component({
   components: { SearchForm, SearchSummary, MovieList, SubHeaderBlock, ButtonToggle },
 })
-export default class SearchPage extends Vue {
+export default class SearchPage extends Mappers {
   LoadStatus = LoadStatus;
-
-  get result(): MoviesSearchResult {
-    return this.$storeTyped.state.searchItems.result;
-  }
-
-  get status(): LoadStatus {
-    return this.$storeTyped.state.searchItems.status;
-  }
 
   searchText = '';
 
@@ -48,7 +49,7 @@ export default class SearchPage extends Vue {
   }
 
   created() {
-    this.$storeTyped.dispatch(actions.searchItems.getItems);
+    this.dispatchGetItems();
   }
 
   search() {
@@ -59,7 +60,7 @@ export default class SearchPage extends Vue {
       sortOrder: this.getSortOrder(this.sortByValue),
     };
 
-    this.$storeTyped.dispatch(actions.searchItems.getItems, payload);
+    this.dispatchGetItems(payload);
   }
 
   getSortOrder(sortBy: SortBy) {

@@ -1,44 +1,53 @@
-import Vue from 'vue';
-import { Module } from 'vuex';
+import { Actions, Getters, Mutations, Module, createMapper } from 'vuex-smart-module'
 
-import { SearchRequest } from '@/data/types';
+import { SearchRequest, MoviesSearchResult } from '@/data/types';
 import MovieApi from '@/services/MovieApi';
-import { initNames, nameOf } from '../helpers';
-import { RootState, SearchMoviesState, LoadStatus } from '../types';
 
-export const mutations = initNames({
-  updateSearchResult: null,
-  setStatus: null,
-});
+import { LoadStatus } from '../types';
+import { setState } from '../helpers';
 
-export const actions = initNames({
-  getItems: null,
-});
+class SearchMoviesState {
+  result: MoviesSearchResult = {
+    items: [],
+    total: 0,
+  };
+  status = LoadStatus.NotLoaded;
+}
 
-export const module: Module<SearchMoviesState, RootState> = {
+class SearchMoviesGetters extends Getters<SearchMoviesState> {
+}
+
+class SearchMoviesMutations extends Mutations<SearchMoviesState> {
+  updateSearchResult(payload: MoviesSearchResult) {
+    setState(this.state, 'result', payload);
+  }
+
+  setStatus(payload: LoadStatus) {
+    setState(this.state, 'status', payload);
+  }
+}
+
+class SearchMoviesActions extends Actions<
+  SearchMoviesState,
+  SearchMoviesGetters,
+  SearchMoviesMutations,
+  SearchMoviesActions
+> {
+  async getItems(payload?: SearchRequest) {
+    this.commit("setStatus", LoadStatus.Loading);
+    const searchResult = await MovieApi.getMovies(payload);
+
+    this.commit("updateSearchResult", searchResult);
+    this.commit("setStatus", LoadStatus.Loaded);
+  }
+}
+
+export const searchMovies = new Module({
   namespaced: true,
-  state: {
-    result: {
-      items: [],
-      total: 0,
-    },
-    status: LoadStatus.NotLoaded,
-  },
-  mutations: {
-    [mutations.updateSearchResult]: (state, payload) => {
-      Vue.set(state, nameOf<SearchMoviesState>('result'), payload);
-    },
-    [mutations.setStatus]: (state, payload) => {
-      Vue.set(state, nameOf<SearchMoviesState>('status'), payload);
-    },
-  },
-  actions: {
-    [actions.getItems]: async (store, payload: SearchRequest) => {
-      store.commit(mutations.setStatus, LoadStatus.Loading);
-      const searchResult = await MovieApi.getMovies(payload);
+  state: SearchMoviesState,
+  mutations: SearchMoviesMutations,
+  getters: SearchMoviesGetters,
+  actions: SearchMoviesActions,
+});
 
-      store.commit(mutations.updateSearchResult, searchResult);
-      store.commit(mutations.setStatus, LoadStatus.Loaded);
-    },
-  },
-};
+export const searchMoviesMapper = createMapper(searchMovies);
