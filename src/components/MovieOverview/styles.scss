@@ -9,6 +9,12 @@
   background-repeat: no-repeat;
   background-size: cover;
 
+  &__right-top {
+    float: right;
+    right: 50px;
+    top: 50px;
+  }
+
   &__rating {
     height: 50px;
     width: 50px;

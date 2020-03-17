@@ -7,7 +7,13 @@
     <MovieOverview
       v-if="status === LoadStatus.Loaded"
       :item="movieItem"
-    />
+    >
+      <template v-slot:right-top>
+        <router-link :to="{ name: 'home' }">
+          <b-icon-search variant="danger" font-scale="1.5" />
+        </router-link>
+      </template>
+    </MovieOverview>
   </div>
 </template>
 
