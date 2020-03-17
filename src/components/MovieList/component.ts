@@ -7,10 +7,10 @@ import { filters } from "../../utils"
 @Component({ 
   filters: { year: filters.year },
 })
-export default class SearchResult extends Vue {
+export default class MovieList extends Vue {
 
   @Prop({ default: () => [] })
-  resultItems!: MovieItem[];
+  items!: MovieItem[];
 
   @Prop({ default: () => () => '', required: true })
   getLocation!: (id: string) => RawLocation;

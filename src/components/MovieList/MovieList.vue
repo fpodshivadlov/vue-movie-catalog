@@ -1,8 +1,8 @@
 <template>
   <b-container class="search-result">
-    <b-row v-if="resultItems.length" class="search-result__list py-3">
+    <b-row v-if="items.length" class="search-result__list py-3">
       <b-col
-        v-for="item in resultItems"
+        v-for="item in items"
         :key="item.key"
         class="search-result__item"
         cols="4"

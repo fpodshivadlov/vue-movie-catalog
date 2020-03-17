@@ -14,9 +14,9 @@
       :sortBy="sortByValue"
       @update:sortBy="sortByValue = $event; search()"
     />
-    <SearchResult
+    <MovieList
       v-if="status === LoadStatus.Loaded"
-      :resultItems="result.items"
+      :items="result.items"
       :getLocation="(id) => ({ name: 'details', params: { id: id }})"
     />
     <div v-if="status === LoadStatus.Loading" class="text-center p-5">

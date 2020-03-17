@@ -8,11 +8,11 @@ import { actions } from '@/store'
 
 import SearchForm from '@/components/SearchForm/SearchForm.vue'
 import SearchSummary from '@/components/SearchSummary/SearchSummary.vue'
-import SearchResult from '@/components/SearchResult/SearchResult.vue'
+import MovieList from '@/components/MovieList/MovieList.vue'
 import { SwitcherOption } from '@/components/common/Switcher/component'
 
 @Component({
-  components: { SearchForm, SearchSummary, SearchResult },
+  components: { SearchForm, SearchSummary, MovieList },
 })
 export default class SearchPage extends Vue {
   LoadStatus = LoadStatus;

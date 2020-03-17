@@ -1,28 +1,28 @@
 import { storiesOf } from '@storybook/vue';
 
-import SearchResult from '../components/SearchResult/SearchResult.vue';
+import MovieList from '../components/MovieList/MovieList.vue';
 import { MovieItem } from "../data/types";
 import movies from "../data/movies";
 
 const movieItems: MovieItem[] = movies.slice(0, 3);
 
-storiesOf('Search Result', module)
+storiesOf('Movie List', module)
   .add('default', () => ({
-    components: { SearchResult },
+    components: { MovieList },
     data() {
       return {
         movieItems,
       };
     },
-    template: `<SearchResult 
-      :resultItems="movieItems"
+    template: `<MovieList 
+      :items="movieItems"
     />`,
   }));
 
-storiesOf('Search Result', module)
+storiesOf('Movie List', module)
   .add('not found', () => ({
-    components: { SearchResult },
-    template: `<SearchResult 
-      :resultItems="[]"
+    components: { MovieList },
+    template: `<MovieList 
+      :items="[]"
     />`,
   }));
