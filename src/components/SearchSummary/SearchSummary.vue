@@ -1,16 +1,14 @@
 <template>
-  <b-container>
-    <b-row class="search-summary">
-      <b-col cols="6" class="search-summary__count">
-        <div v-if="totalFound">{{ totalFound }} movie(s) found</div>
-      </b-col>
+  <SubHeaderBlock  class="search-summary">
+    <div v-if="totalFound">{{ totalFound }} movie(s) found</div>
+    <template v-slot:right>
       <ButtonToggle class="px-3"
         label="Sort by"
         v-model="sortBySynced"
         :options="sortByOptions"
       />
-    </b-row>
-  </b-container>
+    </template>
+  </SubHeaderBlock>
 </template>
 
 <script src="./component.ts" lang="ts" />

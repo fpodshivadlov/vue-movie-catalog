@@ -6,13 +6,15 @@ import { MoviesSearchResult, SearchBy, SortBy, SearchRequest, SortOrder } from '
 import { LoadStatus } from '@/store/types'
 import { actions } from '@/store'
 
+import SubHeaderBlock from '@/components/base/SubHeaderBlock/SubHeaderBlock.vue'
+import ButtonToggle from '@/components/base/ButtonToggle/ButtonToggle.vue'
 import SearchForm from '@/components/SearchForm/SearchForm.vue'
 import SearchSummary from '@/components/SearchSummary/SearchSummary.vue'
 import MovieList from '@/components/MovieList/MovieList.vue'
 import { ButtonToggleOption } from '@/components/base/ButtonToggle/component'
 
 @Component({
-  components: { SearchForm, SearchSummary, MovieList },
+  components: { SearchForm, SearchSummary, MovieList, SubHeaderBlock, ButtonToggle },
 })
 export default class SearchPage extends Vue {
   LoadStatus = LoadStatus;
