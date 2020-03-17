@@ -9,17 +9,12 @@ storiesOf('Search Form', module)
     data: () => ({
       searchText: "text",
       searchBy: "title",
+      searchAction: action('search-click'),
     }),
-    methods: {
-      searchClick: function () {
-        action('search-click');
-        window.alert(`search-click: ${this["searchText"]}`);
-      },
-    },
     template: `<SearchForm 
       :searchText="searchText"
       @update:searchText="searchText = $event"
-      @search-action="searchClick"
+      @search-action="searchAction"
       :searchByOptions="[
         { value: 'title', label: 'Title' },
         { value: 'genres', label: 'Genres' },
