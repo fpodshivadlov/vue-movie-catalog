@@ -14,8 +14,7 @@ storiesOf('Search Summary', module)
         { value: 'title', label: 'Title' },
         { value: 'date', label: 'Date' },
       ]"
-      :sortBy="sortBy"
-      @update:sortBy="sortBy = $event"
+      :sortBy.sync="sortBy"
     />`,
   }));
 
@@ -31,7 +30,6 @@ storiesOf('Search Summary', module)
         { value: 'title', label: 'Title' },
         { value: 'date', label: 'Date' },
       ]"
-      :sortBy="sortBy"
-      @update:sortBy="sortBy = $event"
+      :sortBy.sync="sortBy"
     />`,
   }));

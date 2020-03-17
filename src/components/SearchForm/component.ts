@@ -17,13 +17,13 @@ export default class SearchForm extends Vue {
   searchBySynced!: string;
 
   @Emit()
-  searchAction() {
+  searchAction(_event: BvEvent) {
     // wrapper emit
   }
 
   inputKeydown(event: BvEvent) {
     if (event.which === 13) {
-      this.searchAction();
+      this.searchAction(event);
     }
   }
 }

@@ -12,14 +12,12 @@ storiesOf('Search Form', module)
       searchAction: action('search-click'),
     }),
     template: `<SearchForm 
-      :searchText="searchText"
-      @update:searchText="searchText = $event"
+      :searchText.sync="searchText"
       @search-action="searchAction"
       :searchByOptions="[
         { value: 'title', label: 'Title' },
         { value: 'genres', label: 'Genres' },
       ]"
-      :searchBy="searchBy"
-      @update:searchBy="searchBy = $event"
+      :searchBy.sync="searchBy"
     />`,
   }));

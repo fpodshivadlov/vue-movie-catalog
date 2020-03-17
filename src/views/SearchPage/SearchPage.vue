@@ -1,18 +1,17 @@
 <template>
   <div class="search-page">
     <SearchForm
-      :searchText="searchText"
-      @update:searchText="searchText = $event"
+      :searchText.sync="searchText"
       :searchByOptions="searchByOptions"
-      :searchBy="searchByValue"
-      @update:searchBy="searchByValue = $event; search()"
+      :searchBy.sync="searchByValue"
+      @update:searchBy="search"
       @search-action="search"
     />
     <SearchSummary 
       :totalFound="result.total"
       :sortByOptions="sortByOptions"
-      :sortBy="sortByValue"
-      @update:sortBy="sortByValue = $event; search()"
+      :sortBy.sync="sortByValue"
+      @update:sortBy="search"
     />
     <MovieList
       v-if="status === LoadStatus.Loaded"
