@@ -1,9 +1,10 @@
+import Vue from 'vue';
 import { Module } from 'vuex';
 
 import { SearchRequest } from '@/data/types';
 import MovieApi from '@/services/MovieApi';
+import { initNames, nameOf } from '../helpers';
 import { RootState, SearchMoviesState, LoadStatus } from '../types';
-import { initNames } from '../helpers';
 
 export const mutations = initNames({
   updateSearchResult: null,
@@ -25,10 +26,10 @@ export const module: Module<SearchMoviesState, RootState> = {
   },
   mutations: {
     [mutations.updateSearchResult]: (state, payload) => {
-      state.result = payload;
+      Vue.set(state, nameOf<SearchMoviesState>('result'), payload);
     },
     [mutations.setStatus]: (state, payload) => {
-      state.status = payload;
+      Vue.set(state, nameOf<SearchMoviesState>('status'), payload);
     },
   },
   actions: {

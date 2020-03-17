@@ -1,8 +1,9 @@
+import Vue from 'vue';
 import { Module } from 'vuex';
 
 import MovieApi from '@/services/MovieApi';
+import { initNames, nameOf } from '../helpers';
 import { RootState, LoadStatus, GetMovieState } from '../types';
-import { initNames } from '../helpers';
 
 export const mutations = initNames({
   updateItem: null,
@@ -19,11 +20,11 @@ export const module: Module<GetMovieState, RootState> = {
     status: LoadStatus.NotLoaded,
   },
   mutations: {
-    [mutations.updateItem]: (state, payload) => {
-      state.item = payload;
+    [mutations.updateItem]: function(state, payload) {
+      Vue.set(state, nameOf<GetMovieState>('item'), payload);
     },
     [mutations.setStatus]: (state, payload) => {
-      state.status = payload;
+      Vue.set(state, nameOf<GetMovieState>('status'), payload);
     },
   },
   actions: {

@@ -1,9 +1,10 @@
+import Vue from 'vue';
 import { Module } from 'vuex';
 
-import MovieApi from '@/services/MovieApi';
-import { RootState, LoadStatus, GetGenresState, GenreData } from '../types';
-import { initNames } from '../helpers';
 import { SearchBy, SortBy, SortOrder } from '@/data/types';
+import MovieApi from '@/services/MovieApi';
+import { initNames, nameOf } from '../helpers';
+import { RootState, LoadStatus, GetGenresState, GenreData } from '../types';
 
 export const mutations = initNames({
   clearList: null,
@@ -29,6 +30,7 @@ export const module: Module<GetGenresState, RootState> = {
       state.items.push(payload);
     },
     [mutations.setStatus]: (state, payload) => {
+      Vue.set(state, nameOf<GetGenresState>('status'), payload);
       state.status = payload;
     },
   },

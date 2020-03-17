@@ -1,3 +1,5 @@
+export const nameOf = <T>(name: Extract<keyof T, string>): string => name;
+
 export interface NamespaceNames {
   [key: string]: string;
 }

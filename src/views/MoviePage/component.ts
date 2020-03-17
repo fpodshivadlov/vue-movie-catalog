@@ -1,4 +1,4 @@
-import { Component } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import { Vue } from '@/utils';
 
 import { LoadStatus } from '@/store/types';
@@ -14,6 +14,15 @@ import MovieOverview from '@/components/MovieOverview/MovieOverview.vue';
 export default class MoviePage extends Vue {
   LoadStatus = LoadStatus;
 
+  get movieId() {
+    return this.$route.params.id;
+  }
+
+  @Watch('movieId', { immediate: true })
+  onMovieChanged(movieId: string) {
+    this.$storeTyped.dispatch(actions.getItem.getItem, movieId);
+  }
+
   get movieItem() {
     return this.$storeTyped.state.getItem.item;
   }
@@ -24,10 +33,5 @@ export default class MoviePage extends Vue {
 
   get genres() {
     return this.$storeTyped.state.getGenres.items;
-  }
-
-  created() {
-    const id = this.$route.params.id;
-    this.$storeTyped.dispatch(actions.getItem.getItem, id);
   }
 }
