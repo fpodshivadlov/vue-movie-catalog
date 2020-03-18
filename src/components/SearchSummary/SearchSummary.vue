@@ -1,6 +1,8 @@
 <template>
   <SubHeaderBlock  class="search-summary">
-    <div v-if="totalFound">{{ totalFound }} movie(s) found</div>
+    <div v-if="totalFound">
+      <span data-cy="total-found">{{ totalFound }}</span> movie(s) found
+    </div>
     <template v-slot:right>
       <ButtonToggle class="px-3"
         label="Sort by"

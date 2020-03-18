@@ -13,7 +13,9 @@
           </router-link>
           <div class="d-flex justify-content-between py-1">
             <div>
-              <div><h4>{{ item.title }}</h4></div>
+              <div data-cy="movie-title">
+                <h4>{{ item.title }}</h4>
+              </div>
               <div><small>{{ item.genres.join(", ") }}</small></div>
             </div>
             <div class="py-2">

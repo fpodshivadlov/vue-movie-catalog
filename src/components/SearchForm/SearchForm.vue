@@ -13,6 +13,7 @@
             v-model="searchTextSynced"
             placeholder="Search..."
             @keydown.enter.native="inputKeydown" 
+            data-cy='search-text'
           />
         </b-col>
         <b-col md="3">
@@ -23,6 +24,7 @@
             :block="true"
             variant="danger"
             @click="searchAction"
+            data-cy='search-button'
           >
             Search
           </b-button>
