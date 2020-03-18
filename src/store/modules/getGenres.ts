@@ -39,6 +39,11 @@ class GetGenresActions extends Actions<
   GetGenresMutations,
   GetGenresActions
 > {
+  reset() {
+    this.commit("setStatus", LoadStatus.NotLoaded);
+    this.commit("clearList");
+  }
+
   async getItems(payload?: string[]) {
     this.commit("setStatus", LoadStatus.Loading);
 

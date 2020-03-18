@@ -11,10 +11,11 @@ const Mappers = Vue.extend({
   computed: {
     ...getMovieMapper.mapState({
       movieItem: (state) => state.item,
-      status: (state) => state.status
+      movieItemStatus: (state) => state.status,
     }),
     ...getGenresMapper.mapState({
       genres: (state) => state.genres,
+      genresStatus: (state) => state.status,
     }),
   },
   methods: getMovieMapper.mapActions({

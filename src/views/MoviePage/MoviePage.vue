@@ -1,11 +1,10 @@
 <template>
   <div class="movie-page">
-    <div v-if="status === LoadStatus.Loading" class="text-center p-5">
+    <div v-if="movieItemStatus === LoadStatus.Loading" class="text-center p-5">
       <b-spinner classlabel="Spinning" />
     </div>
-
     <MovieOverview
-      v-if="status === LoadStatus.Loaded"
+      v-if="movieItemStatus === LoadStatus.Loaded"
       :item="movieItem"
     >
       <template v-slot:right-top>
@@ -23,6 +22,14 @@
         :items="genre.items"
         :getLocation="(id) => ({ name: 'details', params: { id: id }})"
       />
+    </div>
+
+    <div v-if="genresStatus === LoadStatus.Loading" class="text-center p-5">
+      <div class="spinner-grow text-light spinner-grow-sm" role="status" />
+      <div class="spinner-grow text-light spinner-grow-sm" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-light spinner-grow-sm" role="status" />
     </div>
   </div>
 </template>

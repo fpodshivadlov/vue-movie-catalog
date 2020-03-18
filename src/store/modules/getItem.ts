@@ -40,6 +40,8 @@ class GetMovieActions extends Actions<
 
   async getItem(payload: string) {
     this.commit("setStatus", LoadStatus.Loading);
+    this.getGenres.dispatch("reset");
+
     const item = await MovieApi.getMovie(payload);
 
     this.commit("updateItem", item);
