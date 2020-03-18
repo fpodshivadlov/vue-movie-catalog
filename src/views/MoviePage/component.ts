@@ -23,8 +23,11 @@ const Mappers = Vue.extend({
   }),
 });
 
-@Component({
+@Component<MoviePage>({
   components: { SubHeaderBlock, MovieList, MovieOverview },
+  metaInfo: function() { 
+    return { title: this.movieItem?.title };
+  },
 })
 export default class MoviePage extends Mappers {
   LoadStatus = LoadStatus;

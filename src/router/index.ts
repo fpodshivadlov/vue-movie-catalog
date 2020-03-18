@@ -10,6 +10,9 @@ const routes: RouteConfig[] = [
     path: '/',
     name: 'home',
     component: SearchPage,
+    meta: {
+      title: 'Home',
+    },
   },
   {
     path: '/details/:id',
@@ -17,12 +20,18 @@ const routes: RouteConfig[] = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/MoviePage/MoviePage.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/MoviePage/MoviePage.vue'),
+    meta: {
+      title: 'Movie Details',
+    },
   },
   {
     path: '*',
     name: 'not-found',
-    component: NotFoundPage
+    component: NotFoundPage,
+    meta: {
+      title: 'Not Found',
+    },
   },  
 ]
 
