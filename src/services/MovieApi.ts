@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { MoviesSearchResult, SearchRequest, MovieItem } from '../data/types';
+import configuration from '../configuration';
 
-const baseUrl = "http://react-cdp-api.herokuapp.com/";
 const instance = axios.create({
-  baseURL: baseUrl,
+  baseURL: configuration.VUE_APP_BACKEND_BASE_URL,
 });
 
 export default {
