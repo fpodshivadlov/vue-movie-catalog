@@ -25,7 +25,7 @@ const Mappers = Vue.extend({
 
 @Component<MoviePage>({
   components: { SubHeaderBlock, MovieList, MovieOverview },
-  metaInfo: function() { 
+  metaInfo() {
     return { title: this.movieItem?.title };
   },
 })

@@ -12,7 +12,7 @@
             size="lg"
             v-model="searchTextSynced"
             placeholder="Search..."
-            @keydown.enter.native="inputKeydown" 
+            @keydown.enter.native="inputKeydown"
             data-cy='search-text'
           />
         </b-col>

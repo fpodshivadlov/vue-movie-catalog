@@ -19,19 +19,19 @@ export interface MoviesSearchResult {
 }
 
 export enum SearchBy {
-  Title = "title",
-  Genres = "genres",
+  Title = 'title',
+  Genres = 'genres',
 }
 
 export enum SortBy {
-  Title = "title",
-  ReleaseDate = "release_date",
-  Rating = "vote_average",
+  Title = 'title',
+  ReleaseDate = 'release_date',
+  Rating = 'vote_average',
 }
 
 export enum SortOrder {
-  Asc = "asc",
-  Desc = "desc",
+  Asc = 'asc',
+  Desc = 'desc',
 }
 
 export interface SearchRequest {

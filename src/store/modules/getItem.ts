@@ -1,5 +1,5 @@
 import { Store } from 'vuex';
-import { Actions, Getters, Mutations, Module, createMapper, Context } from 'vuex-smart-module'
+import { Actions, Getters, Mutations, Module, createMapper, Context } from 'vuex-smart-module';
 
 import { MovieItem } from '@/types';
 import MovieApi from '@/services/MovieApi';
@@ -10,6 +10,7 @@ import { setState } from '../helpers';
 
 class GetMovieState {
   item: MovieItem | null = null;
+
   status = LoadStatus.NotLoaded;
 }
 
@@ -39,15 +40,15 @@ class GetMovieActions extends Actions<
   }
 
   async getItem(payload: string) {
-    this.commit("setStatus", LoadStatus.Loading);
-    this.getGenres.dispatch("reset");
+    this.commit('setStatus', LoadStatus.Loading);
+    this.getGenres.dispatch('reset');
 
     const item = await MovieApi.getMovie(payload);
 
-    this.commit("updateItem", item);
-    this.commit("setStatus", LoadStatus.Loaded);
+    this.commit('updateItem', item);
+    this.commit('setStatus', LoadStatus.Loaded);
 
-    this.getGenres.dispatch("getItems", item.genres);
+    this.getGenres.dispatch('getItems', item.genres);
   }
 }
 

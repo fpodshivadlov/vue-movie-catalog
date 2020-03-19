@@ -1,4 +1,4 @@
-import { Actions, Getters, Mutations, Module, createMapper } from 'vuex-smart-module'
+import { Actions, Getters, Mutations, Module, createMapper } from 'vuex-smart-module';
 
 import { SearchRequest, MoviesSearchResult } from '@/types';
 import MovieApi from '@/services/MovieApi';
@@ -11,6 +11,7 @@ class SearchMoviesState {
     items: [],
     total: 0,
   };
+
   status = LoadStatus.NotLoaded;
 }
 
@@ -34,11 +35,11 @@ class SearchMoviesActions extends Actions<
   SearchMoviesActions
 > {
   async getItems(payload?: SearchRequest) {
-    this.commit("setStatus", LoadStatus.Loading);
+    this.commit('setStatus', LoadStatus.Loading);
     const searchResult = await MovieApi.getMovies(payload);
 
-    this.commit("updateSearchResult", searchResult);
-    this.commit("setStatus", LoadStatus.Loaded);
+    this.commit('updateSearchResult', searchResult);
+    this.commit('setStatus', LoadStatus.Loaded);
   }
 }
 

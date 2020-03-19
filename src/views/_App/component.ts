@@ -1,8 +1,8 @@
-import { Component } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator';
 import Vue from 'vue';
 
 @Component({
-  metaInfo: function() {
+  metaInfo() {
     return {
       title: this.$route.meta.title,
       titleTemplate: '%s | Movie Catalog',

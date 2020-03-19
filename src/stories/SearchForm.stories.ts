@@ -7,8 +7,8 @@ storiesOf('Search Form', module)
   .add('default', () => ({
     components: { SearchForm },
     data: () => ({
-      searchText: "text",
-      searchBy: "title",
+      searchText: 'text',
+      searchBy: 'title',
       searchAction: action('search-click'),
     }),
     template: `<SearchForm 

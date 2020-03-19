@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import { Emit, Component } from 'vue-property-decorator'
-import { BvEvent } from 'bootstrap-vue'
+import Vue from 'vue';
+import { Emit, Component } from 'vue-property-decorator';
+import { BvEvent } from 'bootstrap-vue';
 
-import { SearchBy, SortBy, SearchRequest, SortOrder } from '@/types'
-import { LoadStatus, searchMoviesMapper } from '@/store'
+import { SearchBy, SortBy, SearchRequest, SortOrder } from '@/types';
+import { LoadStatus, searchMoviesMapper } from '@/store';
 
-import SubHeaderBlock from '@/components/base/SubHeaderBlock/SubHeaderBlock.vue'
-import ButtonToggle from '@/components/base/ButtonToggle/ButtonToggle.vue'
-import SearchForm from '@/components/SearchForm/SearchForm.vue'
-import SearchSummary from '@/components/SearchSummary/SearchSummary.vue'
-import MovieList from '@/components/MovieList/MovieList.vue'
-import { ButtonToggleOption } from '@/components/base/ButtonToggle/component'
+import SubHeaderBlock from '@/components/base/SubHeaderBlock/SubHeaderBlock.vue';
+import ButtonToggle from '@/components/base/ButtonToggle/ButtonToggle.vue';
+import SearchForm from '@/components/SearchForm/SearchForm.vue';
+import SearchSummary from '@/components/SearchSummary/SearchSummary.vue';
+import MovieList from '@/components/MovieList/MovieList.vue';
+import { ButtonToggleOption } from '@/components/base/ButtonToggle/component';
 
 const Mappers = Vue.extend({
   computed: searchMoviesMapper.mapState({
@@ -23,7 +23,9 @@ const Mappers = Vue.extend({
 });
 
 @Component({
-  components: { SearchForm, SearchSummary, MovieList, SubHeaderBlock, ButtonToggle },
+  components: {
+    SearchForm, SearchSummary, MovieList, SubHeaderBlock, ButtonToggle,
+  },
 })
 export default class SearchPage extends Mappers {
   LoadStatus = LoadStatus;
@@ -31,12 +33,14 @@ export default class SearchPage extends Mappers {
   searchText = '';
 
   searchByValue: SearchBy = SearchBy.Title;
+
   searchByOptions: ButtonToggleOption[] = [
     { value: SearchBy.Title, label: 'Title' },
     { value: SearchBy.Genres, label: 'Genres' },
   ];
 
   sortByValue: SortBy = SortBy.Title;
+
   sortByOptions: ButtonToggleOption[] = [
     { value: SortBy.Title, label: 'Title' },
     { value: SortBy.ReleaseDate, label: 'Date' },
@@ -64,7 +68,8 @@ export default class SearchPage extends Mappers {
   }
 
   getSortOrder(sortBy: SortBy) {
-    return sortBy === SortBy.Rating || sortBy === SortBy.ReleaseDate ? SortOrder.Desc : SortOrder.Asc;
+    return sortBy === SortBy.Rating || sortBy === SortBy.ReleaseDate
+      ? SortOrder.Desc
+      : SortOrder.Asc;
   }
-
 }

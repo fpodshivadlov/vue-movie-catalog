@@ -1,5 +1,5 @@
 export enum LoadStatus {
-  NotLoaded = "NotLoaded",
-  Loading = "Loading",
-  Loaded = "Loaded",
+  NotLoaded = 'NotLoaded',
+  Loading = 'Loading',
+  Loaded = 'Loaded',
 }

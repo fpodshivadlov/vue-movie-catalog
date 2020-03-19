@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import SearchPage from '../views/SearchPage/SearchPage.vue'
-import NotFoundPage from '../views/NotFoundPage/NotFoundPage.vue'
+import Vue from 'vue';
+import VueRouter, { RouteConfig } from 'vue-router';
+import SearchPage from '../views/SearchPage/SearchPage.vue';
+import NotFoundPage from '../views/NotFoundPage/NotFoundPage.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
   {
@@ -32,16 +32,14 @@ const routes: RouteConfig[] = [
     meta: {
       title: 'Not Found',
     },
-  },  
-]
+  },
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
-  scrollBehavior: (_to, _from, savedPosition) => {
-    return savedPosition || { x: 0, y: 0 };
-  },
-})
+  scrollBehavior: (_to, _from, savedPosition) => savedPosition || { x: 0, y: 0 },
+});
 
-export default router
+export default router;

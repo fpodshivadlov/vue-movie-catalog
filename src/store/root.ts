@@ -1,4 +1,4 @@
-import { Module, createMapper, createStore } from 'vuex-smart-module'
+import { Module, createMapper, createStore } from 'vuex-smart-module';
 
 import { searchMovies } from './modules/searchItems';
 import { getMovie } from './modules/getItem';

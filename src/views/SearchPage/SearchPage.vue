@@ -7,7 +7,7 @@
       @update:searchBy="search"
       @search-action="search"
     />
-    <SearchSummary 
+    <SearchSummary
       :totalFound="result.total"
       :sortByOptions="sortByOptions"
       :sortBy.sync="sortByValue"

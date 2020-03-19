@@ -1,4 +1,4 @@
-import { Actions, Getters, Mutations, Module, createMapper } from 'vuex-smart-module'
+import { Actions, Getters, Mutations, Module, createMapper } from 'vuex-smart-module';
 
 import { MovieItem, SearchBy, SortBy, SortOrder } from '@/types';
 import MovieApi from '@/services/MovieApi';
@@ -13,6 +13,7 @@ interface GenreData {
 
 class GetGenresState {
   genres: GenreData[] = [];
+
   status = LoadStatus.NotLoaded;
 }
 
@@ -40,35 +41,35 @@ class GetGenresActions extends Actions<
   GetGenresActions
 > {
   reset() {
-    this.commit("setStatus", LoadStatus.NotLoaded);
-    this.commit("clearList");
+    this.commit('setStatus', LoadStatus.NotLoaded);
+    this.commit('clearList');
   }
 
   async getItems(payload?: string[]) {
-    this.commit("setStatus", LoadStatus.Loading);
+    this.commit('setStatus', LoadStatus.Loading);
 
-      if (payload) {
-        this.commit("clearList");
-        
-        const promises = payload.map(async (name) => {
-          const result = await MovieApi.getMovies({
-            searchBy: SearchBy.Genres,
-            searchText: name,
-            sortBy: SortBy.Rating,
-            sortOrder: SortOrder.Desc,
-            limit: 3,
-          });
+    if (payload) {
+      this.commit('clearList');
 
-          this.commit("addToList", {
-            name,
-            items: result.items,
-          });
+      const promises = payload.map(async (name) => {
+        const result = await MovieApi.getMovies({
+          searchBy: SearchBy.Genres,
+          searchText: name,
+          sortBy: SortBy.Rating,
+          sortOrder: SortOrder.Desc,
+          limit: 3,
         });
 
-        await Promise.all(promises);
-      }
+        this.commit('addToList', {
+          name,
+          items: result.items,
+        });
+      });
 
-    this.commit("setStatus", LoadStatus.Loaded);
+      await Promise.all(promises);
+    }
+
+    this.commit('setStatus', LoadStatus.Loaded);
   }
 }
 

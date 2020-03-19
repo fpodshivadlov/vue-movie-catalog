@@ -33,5 +33,5 @@ export default {
 
     const result: MovieItem = response.data;
     return result;
-  }
-}
+  },
+};

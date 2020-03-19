@@ -1,20 +1,19 @@
 // https://docs.cypress.io/api/introduction/api.html
 
-import { makeMoviesServer } from "../support/server";
+import { makeMoviesServer } from '../support/server';
 
 describe('Home Page', () => {
-
   it('the page is loaded', () => {
     cy.visit('/');
     cy.contains('h1', 'Find your movie');
   });
 
   it('the items are loaded', () => {
-    makeMoviesServer().then((data) => {
+    makeMoviesServer().then(() => {
       cy.visit('/');
       cy.wait('@movies');
 
-      cy.getCy('total-found').contains("9");
+      cy.getCy('total-found').contains('9');
     });
   });
 
@@ -26,5 +25,4 @@ describe('Home Page', () => {
 
     cy.getCy('movie-title').contains('Jay and Silent Bob Strike Back');
   });
-
-})
+});

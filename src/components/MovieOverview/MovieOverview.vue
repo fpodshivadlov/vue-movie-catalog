@@ -16,7 +16,7 @@
               class="movie-overview__rating mx-2 p-2 border border-white rounded-circle text-center"
             >
               <span class="align-middle text-success">
-                {{ item.vote_average }} 
+                {{ item.vote_average }}
               </span>
             </div>
           </div>
@@ -29,7 +29,7 @@
             </strong>
             <strong v-if="item.runtime" class="p-3">
               {{ item.runtime }} min
-            </strong> 
+            </strong>
           </div>
           <div class="h6 py-2">
             {{ item.overview }}

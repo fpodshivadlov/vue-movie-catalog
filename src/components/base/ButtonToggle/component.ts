@@ -7,7 +7,6 @@ export interface ButtonToggleOption {
 
 @Component
 export default class ButtonToggle extends Vue {
-
   @Prop()
   label!: string;
 
@@ -21,5 +20,4 @@ export default class ButtonToggle extends Vue {
   setValue(value: string) {
     return value;
   }
-
 }
