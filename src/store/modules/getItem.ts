@@ -1,7 +1,7 @@
 import { Store } from 'vuex';
 import { Actions, Getters, Mutations, Module, createMapper, Context } from 'vuex-smart-module'
 
-import { MovieItem } from '@/data/types';
+import { MovieItem } from '@/types';
 import MovieApi from '@/services/MovieApi';
 
 import { LoadStatus } from '../types';

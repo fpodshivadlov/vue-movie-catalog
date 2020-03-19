@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/vue';
 
 import MovieOverview from '../components/MovieOverview/MovieOverview.vue';
-import { MovieItem } from "../data/types";
-import movies from "../data/movies";
+import { MovieItem } from '../types';
+import movies from './data/movies';
 
 const movieItem: MovieItem = movies[0];
 

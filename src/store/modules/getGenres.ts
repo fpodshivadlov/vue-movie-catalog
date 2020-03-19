@@ -1,6 +1,6 @@
 import { Actions, Getters, Mutations, Module, createMapper } from 'vuex-smart-module'
 
-import { MovieItem, SearchBy, SortBy, SortOrder } from '@/data/types';
+import { MovieItem, SearchBy, SortBy, SortOrder } from '@/types';
 import MovieApi from '@/services/MovieApi';
 
 import { LoadStatus } from '../types';

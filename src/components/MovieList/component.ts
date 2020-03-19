@@ -1,7 +1,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { RawLocation } from 'vue-router';
 
-import { MovieItem } from "../../data/types"
+import { MovieItem } from "../../types"
 import { filters } from "../../utils"
 
 @Component({ 

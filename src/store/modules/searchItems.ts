@@ -1,6 +1,6 @@
 import { Actions, Getters, Mutations, Module, createMapper } from 'vuex-smart-module'
 
-import { SearchRequest, MoviesSearchResult } from '@/data/types';
+import { SearchRequest, MoviesSearchResult } from '@/types';
 import MovieApi from '@/services/MovieApi';
 
 import { LoadStatus } from '../types';

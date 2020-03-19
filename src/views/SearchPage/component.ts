@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { Emit, Component } from 'vue-property-decorator'
 import { BvEvent } from 'bootstrap-vue'
 
-import { SearchBy, SortBy, SearchRequest, SortOrder } from '@/data/types'
+import { SearchBy, SortBy, SearchRequest, SortOrder } from '@/types'
 import { LoadStatus, searchMoviesMapper } from '@/store'
 
 import SubHeaderBlock from '@/components/base/SubHeaderBlock/SubHeaderBlock.vue'

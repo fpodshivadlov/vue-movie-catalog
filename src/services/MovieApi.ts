@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MoviesSearchResult, SearchRequest, MovieItem } from '../data/types';
+import { MoviesSearchResult, SearchRequest, MovieItem } from '../types';
 import configuration from '../configuration';
 
 const instance = axios.create({
@@ -8,7 +8,7 @@ const instance = axios.create({
 
 export default {
   getMovies: async (searchRequest?: SearchRequest) => {
-    return await instance.get('/movies', {
+    const response = await instance.get('/movies', {
       params: {
         sortBy: searchRequest?.sortBy,
         sortOrder: searchRequest?.sortOrder,
@@ -18,19 +18,20 @@ export default {
         offset: 0,
         limit: searchRequest?.limit ?? 10,
       },
-    }).then(response => {
-      const result: MoviesSearchResult = {
-        items: response.data.data,
-        total: response.data.total,
-      };
-      return result;
     });
+
+    const result: MoviesSearchResult = {
+      items: response.data.data,
+      total: response.data.total,
+    };
+
+    return result;
   },
 
   getMovie: async (id: string) => {
-    return await instance.get(`/movies/${id}`).then(response => {
-      const result: MovieItem = response.data;
-      return result;
-    });
+    const response = await instance.get(`/movies/${id}`);
+
+    const result: MovieItem = response.data;
+    return result;
   }
 }
