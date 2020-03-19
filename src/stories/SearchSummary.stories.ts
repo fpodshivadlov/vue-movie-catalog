@@ -8,7 +8,7 @@ storiesOf('Search Summary', module)
     data: () => ({
       sortBy: 'date',
     }),
-    template: `<SearchSummary 
+    template: `<SearchSummary
       :totalFound="7"
       :sortByOptions="[
         { value: 'title', label: 'Title' },
@@ -24,7 +24,7 @@ storiesOf('Search Summary', module)
     data: () => ({
       sortBy: 'title',
     }),
-    template: `<SearchSummary 
+    template: `<SearchSummary
       :totalFound="0"
       :sortByOptions="[
         { value: 'title', label: 'Title' },

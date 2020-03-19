@@ -9,12 +9,10 @@ const movieItem: MovieItem = movies[0];
 storiesOf('Movie Overview', module)
   .add('default', () => ({
     components: { MovieOverview },
-    data() {
-      return {
-        movieItem,
-      };
-    },
-    template: `<MovieOverview 
+    data: () => ({
+      movieItem,
+    }),
+    template: `<MovieOverview
       :item="movieItem"
     />`,
   }));

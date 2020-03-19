@@ -1,5 +1,5 @@
 <template>
-  <SubHeaderBlock  class="search-summary">
+  <SubHeaderBlock class="search-summary">
     <div v-if="totalFound">
       <span data-cy="total-found">{{ totalFound }}</span> movie(s) found
     </div>
