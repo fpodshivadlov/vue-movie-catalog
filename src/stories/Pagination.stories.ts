@@ -1,31 +1,37 @@
-import { storiesOf } from '@storybook/vue';
+import Vue from 'vue';
+import { withKnobs, number } from '@storybook/addon-knobs';
 
 import Pagination from '../components/Pagination/Pagination.vue';
 
-storiesOf('Pagination', module)
-  .add('1 of 1', () => ({
-    components: { Pagination },
-    data: () => ({ current: 1 }),
-    template: `<Pagination :current.sync="current" :total="1" />`,
-  }));
+export default {
+  title: 'Pagination',
+  decorators: [ withKnobs ],
+};
 
-storiesOf('Pagination', module)
-  .add('2 of 3', () => ({
-    components: { Pagination },
-    data: () => ({ current: 2 }),
-    template: `<Pagination :current.sync="current" :total="3" />`,
-  }));
+export const customizable = () => Vue.extend({
+  components: { Pagination },
+  props: {
+    total: { default: number('Total pages', 5) },
+  },
+  data: () => ({ current: 1 }),
+  template: `<Pagination :current.sync="current" :total="total" />`,
+});
 
-storiesOf('Pagination', module)
-  .add('1 of 7', () => ({
-    components: { Pagination },
-    data: () => ({ current: 1 }),
-    template: `<Pagination :current.sync="current" :total="7" />`,
-  }));
+export const firstOfOne = () => ({
+  components: { Pagination },
+  data: () => ({ current: 1 }),
+  template: `<Pagination :current.sync="current" :total="1" />`,
+});
 
-storiesOf('Pagination', module)
-  .add('5 of 10', () => ({
-    components: { Pagination },
-    data: () => ({ current: 5 }),
-    template: `<Pagination :current.sync="current" :total="10" />`,
-  }));
+export const secondOfThree = () => ({
+  components: { Pagination },
+  data: () => ({ current: 2 }),
+  template: `<Pagination :current.sync="current" :total="3" />`,
+});
+
+export const lastOfTen = () => ({
+  components: { Pagination },
+  data: () => ({ current: 10 }),
+  template: `<Pagination :current.sync="current" :total="10" />`,
+});
+

@@ -1,4 +1,4 @@
-import { Component, Prop, PropSync, Vue, Emit } from 'vue-property-decorator';
+import { Component, Prop, PropSync, Vue, Emit, Watch } from 'vue-property-decorator';
 
 import SubHeaderBlock from '../base/SubHeaderBlock/SubHeaderBlock.vue';
 import PaginationButton from './components/PaginationButton.vue';
@@ -10,6 +10,12 @@ export default class SearchSummary extends Vue {
 
   @PropSync('current')
   currentSynced!: number;
+
+  @Watch('total')
+  onTotalChanged(total: number) {
+    if (this.currentSynced > total)
+      this.currentSynced = total;
+  }
 
   getDisplayingNumbers(): number[] {
     const valuesByPriority = [this.currentSynced, 1, this.total, 2, this.total - 1, 3]

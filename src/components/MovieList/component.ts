@@ -11,6 +11,6 @@ export default class MovieList extends Vue {
   @Prop({ default: () => [] })
   items!: MovieItem[];
 
-  @Prop({ default: () => () => '', required: true })
+  @Prop({ default: () => () => '' })
   getLocation!: (id: string) => RawLocation;
 }
