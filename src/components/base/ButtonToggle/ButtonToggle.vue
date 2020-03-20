@@ -1,7 +1,7 @@
 <template>
-  <div class="button-toggle d-flex flex-row">
-    <div v-if="label">{{ label }}</div>
-    <b-button-group size="sm" class="px-3">
+  <div class="button-toggle d-flex align-items-center m-n2">
+    <div v-if="label" class="p-2">{{ label }}</div>
+    <b-button-group size="sm" class="p-2">
       <b-button
         v-for="(option) in options"
         :key="option.value"

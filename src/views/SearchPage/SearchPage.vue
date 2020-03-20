@@ -12,13 +12,14 @@
       :sortByOptions="sortByOptions"
       :sortBy.sync="sortByValue"
       @update:sortBy="search"
-    />
-    <Pagination
-      v-if="totalPages && status === LoadStatus.Loaded"
-      :total="totalPages"
-      :current.sync="currentPage"
-      @update:current="searchNoResetPagination"
-    />
+    >
+      <Pagination
+        v-if="totalPages && status === LoadStatus.Loaded"
+        :total="totalPages"
+        :current.sync="currentPage"
+        @update:current="searchNoResetPagination"
+      />
+    </SearchSummary>
     <MovieList
       v-if="status === LoadStatus.Loaded"
       :items="result.items"

@@ -1,5 +1,14 @@
 <template>
-  <li
+  <b-button
+    :variant="active ? 'danger' : 'secondary'"
+    :disabled="!valid"
+    :class="{ active: active }"
+    @click.prevent="valid && !active && $emit('update:current', value)"
+  >
+    <slot></slot>
+  </b-button>
+
+  <!-- <li
     class="page-item"
     :class="{ disabled: (value < 1 || value > total), active: (value === current) }"
   >
@@ -9,7 +18,7 @@
     <a v-else @click.prevent="$emit('update:current', value)" class="page-link" href="#">
       <slot></slot>
     </a>
-  </li>
+  </li> -->
 </template>
 
 <script lang="ts">
@@ -26,6 +35,14 @@ export default Vue.extend({
     value: { type: Number, required: true },
     total: { type: Number, required: true },
     current: { type: Number },
+  },
+  computed: {
+    valid() {
+      return this.value >= 1 && this.value <= this.total;
+    },
+    active() {
+      return this.value === this.current;
+    },
   },
 });
 

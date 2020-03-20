@@ -1,7 +1,7 @@
 <template>
-  <SubHeaderBlock>
-    <nav aria-label="Pagination">
-      <ul class="pagination justify-content-end">
+  <div class="">
+    <!-- <nav aria-label="Pagination"> -->
+       <b-button-group size="sm">
         <PaginationButton :value="currentSynced - 1" :total="total" :current.sync="currentSynced">
           Previous
         </PaginationButton>
@@ -10,7 +10,7 @@
           :key="number"
           :value="number"
           :total="total"
-           :current.sync="currentSynced"
+          :current.sync="currentSynced"
         >
           {{ number }}
           <span v-if="number === currentSynced" class="sr-only">(current)</span>
@@ -18,9 +18,9 @@
         <PaginationButton :value="currentSynced + 1" :total="total" :current.sync="currentSynced">
           Next
         </PaginationButton>
-      </ul>
-    </nav>
-  </SubHeaderBlock>
+       </b-button-group>
+    <!-- </nav> -->
+  </div>
 </template>
 
 <script src="./component.ts" lang="ts" />

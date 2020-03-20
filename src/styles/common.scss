@@ -8,6 +8,7 @@ $blue: #79d0ff;
 $dark-grey: #424242;
 $dark-graphite: #222222;
 $light-graphite: #555555;
+$light-grey: #555555;
 $white: #ffffff;
 
 // bootstrap
@@ -21,9 +22,11 @@ $theme-colors: (
   "primary": $blue,
   "danger": $crimson,
   "success": $green,
+  "secondary": $light-grey,
 );
 
-$input-bg: $dark-graphite;
 $body-bg: $dark-grey;
 $body-color: $white;
+
 $input-border-width: 0;
+$input-bg: $dark-graphite;
