@@ -3,26 +3,24 @@ import { withKnobs, select } from '@storybook/addon-knobs';
 
 import MovieOverview from '../components/MovieOverview/MovieOverview.vue';
 import { MovieItem } from '../types';
-import movies from './data/movies';
+import moviesData from './data/movies';
 
 export default {
   title: 'Movie Overview',
-  decorators: [ withKnobs ],
+  decorators: [withKnobs],
 };
 
 const movieOptions = (movies: MovieItem[]) => {
-  const movieValues = movies.reduce((state, value) => {
-    return { ...state, [value.title]: value.id };
-  }, {});
+  const movieValues = movies.reduce((state, value) => ({ ...state, [value.title]: value.id }), {});
 
   const id = select('Movie', movieValues, movies[0].id);
-  return movies.find(x => x.id === id);
-}
+  return movies.find((x) => x.id === id);
+};
 
 export const customizable = () => Vue.extend({
   components: { MovieOverview },
   props: {
-    movie: { default: movieOptions(movies) },
+    movie: { default: movieOptions(moviesData) },
   },
-  template: `<MovieOverview :item="movie" />`,
+  template: '<MovieOverview :item="movie" />',
 });

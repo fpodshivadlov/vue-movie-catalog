@@ -5,7 +5,7 @@ import Pagination from '../components/Pagination/Pagination.vue';
 
 export default {
   title: 'Pagination',
-  decorators: [ withKnobs ],
+  decorators: [withKnobs],
 };
 
 export const customizable = () => Vue.extend({
@@ -14,24 +14,23 @@ export const customizable = () => Vue.extend({
     total: { default: number('Total pages', 5) },
   },
   data: () => ({ current: 1 }),
-  template: `<Pagination :current.sync="current" :total="total" />`,
+  template: '<Pagination :current.sync="current" :total="total" />',
 });
 
 export const firstOfOne = () => ({
   components: { Pagination },
   data: () => ({ current: 1 }),
-  template: `<Pagination :current.sync="current" :total="1" />`,
+  template: '<Pagination :current.sync="current" :total="1" />',
 });
 
 export const secondOfThree = () => ({
   components: { Pagination },
   data: () => ({ current: 2 }),
-  template: `<Pagination :current.sync="current" :total="3" />`,
+  template: '<Pagination :current.sync="current" :total="3" />',
 });
 
 export const lastOfTen = () => ({
   components: { Pagination },
   data: () => ({ current: 10 }),
-  template: `<Pagination :current.sync="current" :total="10" />`,
+  template: '<Pagination :current.sync="current" :total="10" />',
 });
-

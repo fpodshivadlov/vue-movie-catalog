@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropTypes } from 'vue';
+import Vue from 'vue';
 
 type Props = {
   value: number;
@@ -23,9 +23,9 @@ type Props = {
 
 export default Vue.extend({
   props: {
-    value: { type: Number as PropTypes<Props>, required: true },
-    total: { type: Number as PropTypes<Props>, required: true },
-    current: { type: Number as PropTypes<Props> },
+    value: { type: Number, required: true },
+    total: { type: Number, required: true },
+    current: { type: Number },
   },
 });
 

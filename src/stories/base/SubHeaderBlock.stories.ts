@@ -1,11 +1,10 @@
-import { storiesOf } from '@storybook/vue';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 
 import SubHeaderBlock from '../../components/base/SubHeaderBlock/SubHeaderBlock.vue';
 
 export default {
   title: 'Base/Sub Header Block',
-  decorators: [ withKnobs ],
+  decorators: [withKnobs],
 };
 
 export const customizable = () => ({
@@ -23,4 +22,3 @@ export const customizable = () => ({
     </template>
   </SubHeaderBlock>`,
 });
-

@@ -5,15 +5,15 @@ import { ButtonToggleOption } from '../../components/base/ButtonToggle/component
 
 export default {
   title: 'Base/Button Toggle',
-  decorators: [ withKnobs ],
+  decorators: [withKnobs],
 };
 
 const getOptions = (): ButtonToggleOption[] => {
   const items = number('Options Items', 2, { range: true, min: 0, max: 6 });
   const title = text('Options Title', 'Option');
 
-  return [...Array(items).keys()].map(i => ({ value: `option${i+1}`, label: `${title} ${i+1}` }));
-}
+  return [...Array(items).keys()].map((i) => ({ value: `option${i + 1}`, label: `${title} ${i + 1}` }));
+};
 
 export const customizable = () => ({
   components: { ButtonToggle },

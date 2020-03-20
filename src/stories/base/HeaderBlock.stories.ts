@@ -4,7 +4,7 @@ import HeaderBlock from '../../components/base/HeaderBlock/HeaderBlock.vue';
 
 export default {
   title: 'Base/Header Block',
-  decorators: [ withKnobs ],
+  decorators: [withKnobs],
 };
 
 export const customizable = () => ({

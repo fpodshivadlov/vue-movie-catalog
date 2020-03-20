@@ -1,5 +1,3 @@
-import { storiesOf } from '@storybook/vue';
-
 import SearchSummary from '../components/SearchSummary/SearchSummary.vue';
 
 export default {
