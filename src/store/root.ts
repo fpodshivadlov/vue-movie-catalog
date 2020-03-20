@@ -1,7 +1,7 @@
 import { Module, createMapper, createStore } from 'vuex-smart-module';
 
-import { searchMovies } from './modules/searchItems';
-import { getMovie } from './modules/getItem';
+import { searchMovies } from './modules/searchMovies';
+import { getMovie } from './modules/getMovie';
 import { getGenres } from './modules/getGenres';
 
 export const root = new Module({

@@ -15,7 +15,7 @@ export default {
         search: searchRequest?.searchText,
         searchBy: searchRequest?.searchBy,
         filter: null,
-        offset: 0,
+        offset: searchRequest?.offset ?? 0,
         limit: searchRequest?.limit ?? 10,
       },
     });
@@ -23,6 +23,8 @@ export default {
     const result: MoviesSearchResult = {
       items: response.data.data,
       total: response.data.total,
+      limit: response.data.limit,
+      offset: response.data.offset,
     };
 
     return result;

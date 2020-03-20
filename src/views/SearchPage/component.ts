@@ -9,6 +9,7 @@ import SubHeaderBlock from '@/components/base/SubHeaderBlock/SubHeaderBlock.vue'
 import ButtonToggle from '@/components/base/ButtonToggle/ButtonToggle.vue';
 import SearchForm from '@/components/SearchForm/SearchForm.vue';
 import SearchSummary from '@/components/SearchSummary/SearchSummary.vue';
+import Pagination from '@/components/Pagination/Pagination.vue';
 import MovieList from '@/components/MovieList/MovieList.vue';
 import { ButtonToggleOption } from '@/components/base/ButtonToggle/component';
 
@@ -22,9 +23,11 @@ const Mappers = Vue.extend({
   }),
 });
 
+const perPage = 10;
+
 @Component({
   components: {
-    SearchForm, SearchSummary, MovieList, SubHeaderBlock, ButtonToggle,
+    SearchForm, SearchSummary, MovieList, SubHeaderBlock, ButtonToggle, Pagination,
   },
 })
 export default class SearchPage extends Mappers {
@@ -47,6 +50,12 @@ export default class SearchPage extends Mappers {
     { value: SortBy.Rating, label: 'Rating' },
   ];
 
+  currentPage = 1;
+
+  get totalPages() {
+    return this.result.total && Math.floor((this.result.total - 1) / perPage) + 1;
+  }
+
   @Emit()
   onInputChange(event: BvEvent) {
     return event.target.value;
@@ -57,11 +66,18 @@ export default class SearchPage extends Mappers {
   }
 
   search() {
+    this.currentPage = 1;
+    this.searchNoResetPagination();
+  }
+
+  searchNoResetPagination() {
     const payload: SearchRequest = {
       searchText: this.searchText,
       searchBy: this.searchByValue,
       sortBy: this.sortByValue,
       sortOrder: this.getSortOrder(this.sortByValue),
+      limit: perPage,
+      offset: (this.currentPage - 1) * perPage,
     };
 
     this.dispatchGetItems(payload);

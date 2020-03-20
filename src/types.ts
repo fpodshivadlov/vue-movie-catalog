@@ -16,6 +16,8 @@ export interface MovieItem {
 export interface MoviesSearchResult {
   items: MovieItem[];
   total: number;
+  offset: number;
+  limit?: number;
 }
 
 export enum SearchBy {
@@ -40,4 +42,5 @@ export interface SearchRequest {
   sortBy: SortBy;
   sortOrder: SortOrder;
   limit?: number;
+  offset?: number;
 }

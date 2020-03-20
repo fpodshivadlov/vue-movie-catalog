@@ -10,6 +10,7 @@ class SearchMoviesState {
   result: MoviesSearchResult = {
     items: [],
     total: 0,
+    offset: 0,
   };
 
   status = LoadStatus.NotLoaded;
