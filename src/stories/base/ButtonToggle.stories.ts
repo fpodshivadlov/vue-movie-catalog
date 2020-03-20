@@ -1,33 +1,34 @@
-import { storiesOf } from '@storybook/vue';
+import { withKnobs, number, text } from '@storybook/addon-knobs';
 
 import ButtonToggle from '../../components/base/ButtonToggle/ButtonToggle.vue';
 import { ButtonToggleOption } from '../../components/base/ButtonToggle/component';
 
-const options: ButtonToggleOption[] = [
-  {
-    value: 'option1',
-    label: 'Option 1',
-  },
-  {
-    value: 'option2',
-    label: 'Option 2',
-  },
-];
+export default {
+  title: 'Base/Button Toggle',
+  decorators: [ withKnobs ],
+};
 
-storiesOf('Base', module)
-  .add('ButtonToggle', () => ({
-    components: { ButtonToggle },
-    data() {
-      return {
-        options,
-        selectedOption: options[0].value,
-      };
-    },
-    template: `<div>
-      <ButtonToggle
-        label="Select options:"
-        :options="options"
-        v-model="selectedOption"
-      />
-    </div>`,
-  }));
+const getOptions = (): ButtonToggleOption[] => {
+  const items = number('Options Items', 2, { range: true, min: 0, max: 6 });
+  const title = text('Options Title', 'Option');
+
+  return [...Array(items).keys()].map(i => ({ value: `option${i+1}`, label: `${title} ${i+1}` }));
+}
+
+export const customizable = () => ({
+  components: { ButtonToggle },
+  props: {
+    label: { default: text('Label', 'Select options:') },
+    options: { default: getOptions() },
+  },
+  data: () => ({
+    selectedOption: 'option1',
+  }),
+  template: `<div>
+    <ButtonToggle
+      :label="label"
+      :options="options"
+      v-model="selectedOption"
+    />
+  </div>`,
+});

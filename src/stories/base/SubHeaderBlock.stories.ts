@@ -1,24 +1,26 @@
 import { storiesOf } from '@storybook/vue';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 
 import SubHeaderBlock from '../../components/base/SubHeaderBlock/SubHeaderBlock.vue';
 
-storiesOf('Base', module)
-  .add('SubHeaderBlock: left content', () => ({
-    components: { SubHeaderBlock },
-    template: `<SubHeaderBlock>
-      <div>7 movie(s) found</div>
-      <template v-slot:right>
-        <div>ButtonToggle placeholder</div>
-      </template>
-    </SubHeaderBlock>`,
-  }));
+export default {
+  title: 'Base/Sub Header Block',
+  decorators: [ withKnobs ],
+};
 
-storiesOf('Base', module)
-  .add('SubHeaderBlock: no left content', () => ({
-    components: { SubHeaderBlock },
-    template: `<SubHeaderBlock>
-      <template v-slot:right>
-        <div>ButtonToggle placeholder</div>
-      </template>
-    </SubHeaderBlock>`,
-  }));
+export const customizable = () => ({
+  components: { SubHeaderBlock },
+  props: {
+    showMain: { default: boolean('Show Main', true) },
+    showRight: { default: boolean('Show Right', true) },
+    mainText: { default: text('Main Text', 'ItemFound placeholder') },
+    rightText: { default: text('Right Text', 'ButtonToggle placeholder') },
+  },
+  template: `<SubHeaderBlock>
+    <div v-if="showMain">{{ mainText }}</div>
+    <template v-slot:right v-if="showRight">
+      <div>{{ rightText }}</div>
+    </template>
+  </SubHeaderBlock>`,
+});
+

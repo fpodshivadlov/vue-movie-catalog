@@ -1,16 +1,22 @@
-import { storiesOf } from '@storybook/vue';
+import { withKnobs, number, boolean } from '@storybook/addon-knobs';
 
 import HeaderBlock from '../../components/base/HeaderBlock/HeaderBlock.vue';
 
-storiesOf('Base', module)
-  .add('HeaderBlock', () => ({
-    components: { HeaderBlock },
-    template: `<HeaderBlock>
-        <template v-slot:right-top>
-          <div>Right-Top</div>
-        </template>
-        <div>Main content 1</div>
-        <div>Main content 2</div>
-        <div>Main content 3</div>
-      </HeaderBlock>`,
-  }));
+export default {
+  title: 'Base/Header Block',
+  decorators: [ withKnobs ],
+};
+
+export const customizable = () => ({
+  components: { HeaderBlock },
+  props: {
+    mainLines: { default: number('Lines', 3, { range: true, min: 0, max: 20 }) },
+    showRightTop: { default: boolean('Show Right-Top', true) },
+  },
+  template: `<HeaderBlock>
+    <template v-slot:right-top>
+      <div v-if="showRightTop">Right-Top</div>
+    </template>
+    <div v-for="index in mainLines" :key="index">Main content {{ index }}</div>
+  </HeaderBlock>`,
+});
