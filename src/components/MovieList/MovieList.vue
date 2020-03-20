@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-list">
+  <div class="movie-list bg-dark">
     <b-container class="py-4">
       <b-row v-if="items.length">
         <b-col
@@ -9,11 +9,11 @@
           class="py-3"
         >
           <MovieListItem :item="item">
-            <slot name="item-link" :item="item"></slot>
+            <slot name="item-link" :item="item" />
           </MovieListItem>
         </b-col>
       </b-row>
-      <b-row v-else class="movie-list__not-found">
+      <b-row v-else class="py-6">
         <b-col class="text-center">
           <h2>No movies found</h2>
         </b-col>

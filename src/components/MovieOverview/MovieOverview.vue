@@ -4,20 +4,19 @@
       <slot name="right-top" />
     </template>
     <b-container v-if="item">
-      <b-row>
+      <b-row align-v="center">
         <b-col cols="4">
           <img :src="item.poster_path" class="img-fluid" />
         </b-col>
-        <b-col cols="8" class="align-self-center">
-          <div class="d-flex align-items-center">
-            <h1>{{ item.title }}</h1>
+        <b-col cols="8">
+          <div class="d-flex align-items-center m-n2">
+            <h1 class="p-2">{{ item.title }}</h1>
             <div
               v-if="item.vote_average"
-              class="movie-overview__rating mx-2 p-2 border border-white rounded-circle text-center"
-            >
-              <span class="align-middle text-success">
-                {{ item.vote_average }}
-              </span>
+              class="movie-overview__rating p-2">
+                <div class="border rounded-circle border-white text-center text-success p-2">
+                  {{ item.vote_average }}
+                </div>
             </div>
           </div>
           <div class="py-1">
@@ -33,6 +32,9 @@
           </div>
           <div class="h6 py-2">
             {{ item.overview }}
+          </div>
+          <div class="py-1">
+            <small>{{ item.genres.join(', ') }}</small>
           </div>
         </b-col>
       </b-row>

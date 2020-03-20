@@ -1,17 +1,19 @@
 <template>
-  <b-container class="sub-header-block">
-    <b-row align-v="center">
-      <b-col cols="4">
-        <slot></slot>
-      </b-col>
-      <b-col cols="4">
-        <slot name="center"></slot>
-      </b-col>
-      <b-col cols="4">
-        <slot name="right"></slot>
-      </b-col>
-    </b-row>
-  </b-container>
+  <div class="sub-header-block bg-bg px-5 py-3">
+    <b-container>
+      <b-row align-v="center" align-h="between">
+        <b-col sm="auto">
+          <slot />
+        </b-col>
+        <b-col sm="auto">
+          <slot name="center" />
+        </b-col>
+        <b-col sm="auto">
+          <slot name="right" />
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script src="./component.ts" lang="ts" />

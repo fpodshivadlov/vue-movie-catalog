@@ -1,13 +1,13 @@
 <template>
-  <SubHeaderBlock class="search-summary">
+  <SubHeaderBlock class="search-summary bg-bg">
     <div v-if="totalFound">
       <span data-cy="total-found">{{ totalFound }}</span> movie(s) found
     </div>
     <template #center>
-      <slot></slot>
+      <slot />
     </template>
     <template #right>
-      <ButtonToggle class="px-3"
+      <ButtonToggle
         label="Sort by"
         v-model="sortBySynced"
         :options="sortByOptions"

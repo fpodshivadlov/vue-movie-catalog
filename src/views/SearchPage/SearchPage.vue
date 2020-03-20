@@ -14,7 +14,7 @@
       @update:sortBy="search"
     >
       <Pagination
-        v-if="totalPages && status === LoadStatus.Loaded"
+        v-if="totalPages"
         :total="totalPages"
         :current.sync="currentPage"
         @update:current="searchNoResetPagination"

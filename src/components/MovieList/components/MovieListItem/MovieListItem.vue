@@ -1,21 +1,23 @@
 <template>
   <div class="movie-list-item" v-if="item">
     <b-img-lazy
-      class="movie-list-item__image"
+      class="img-fluid"
       :src="item.poster_path"
       :alt="item.title"
     />
-    <div class="d-flex justify-content-between py-1">
-      <div>
-        <div data-cy="movie-title">
-          <h4>{{ item.title }}</h4>
+    <div class="d-flex-inline py-2">
+      <div class="float-right">
+        <div class="border p-1">
+            {{ item.release_date | year }}
         </div>
-        <div><small>{{ item.genres.join(", ") }}</small></div>
       </div>
-      <div class="py-2">
-        <span class="border p-1">{{ item.release_date | year }}</span>
+      <div data-cy="movie-title">
+        <h4>{{ item.title }}</h4>
       </div>
-      <slot></slot>
+      <div>
+        <small>{{ item.genres.join(", ") }}</small>
+      </div>
+      <slot />
     </div>
   </div>
 </template>

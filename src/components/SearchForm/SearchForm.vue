@@ -1,7 +1,7 @@
 <template>
   <HeaderBlock>
     <b-container class="search-form">
-      <b-row class="py-3 text-uppercase">
+      <b-row class="text-uppercase py-3">
         <b-col cols="auto">
           <h1>Find your movie</h1>
         </b-col>

@@ -1,6 +1,8 @@
 <template>
   <div class="button-toggle d-flex align-items-center m-n2">
-    <div v-if="label" class="p-2">{{ label }}</div>
+    <div v-if="label" class="p-2">
+      {{ label }}
+    </div>
     <b-button-group size="sm" class="p-2">
       <b-button
         v-for="(option) in options"

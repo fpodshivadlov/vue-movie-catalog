@@ -1,9 +1,9 @@
 <template>
-  <div class="header-block">
-    <div class="header-block__right-top">
+  <div class="header-block bg-dark p-5">
+    <div class="float-right">
       <slot name="right-top" />
     </div>
-    <div class="header-block__main">
+    <div>
       <slot />
     </div>
   </div>

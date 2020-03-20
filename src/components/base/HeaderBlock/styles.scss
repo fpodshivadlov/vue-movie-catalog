@@ -1,17 +1,8 @@
 @import '../../../styles/common.scss';
 
 .header-block {
-  background-color: $dark-graphite;
-  padding: 50px 70px;
-
   background-image: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9) ), url('../../../assets/movies-background.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
-  &__right-top {
-    float: right;
-    right: 50px;
-    top: 50px;
-  }
 }

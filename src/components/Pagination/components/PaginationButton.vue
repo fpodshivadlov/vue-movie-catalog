@@ -5,20 +5,8 @@
     :class="{ active: active }"
     @click.prevent="valid && !active && $emit('update:current', value)"
   >
-    <slot></slot>
+    <slot />
   </b-button>
-
-  <!-- <li
-    class="page-item"
-    :class="{ disabled: (value < 1 || value > total), active: (value === current) }"
-  >
-    <span v-if="value < 1 || value > total || value === current" class="page-link">
-      <slot></slot>
-    </span>
-    <a v-else @click.prevent="$emit('update:current', value)" class="page-link" href="#">
-      <slot></slot>
-    </a>
-  </li> -->
 </template>
 
 <script lang="ts">
