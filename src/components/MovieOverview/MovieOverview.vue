@@ -1,6 +1,6 @@
 <template>
   <HeaderBlock class="movie-overview">
-    <template v-slot:right-top>
+    <template #right-top>
       <slot name="right-top" />
     </template>
     <b-container v-if="item">

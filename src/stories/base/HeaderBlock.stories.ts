@@ -14,7 +14,7 @@ export const customizable = () => ({
     showRightTop: { default: boolean('Show Right-Top', true) },
   },
   template: `<HeaderBlock>
-    <template v-slot:right-top>
+    <template #right-top>
       <div v-if="showRightTop">Right-Top</div>
     </template>
     <div v-for="index in mainLines" :key="index">Main content {{ index }}</div>

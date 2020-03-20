@@ -16,8 +16,14 @@
     <MovieList
       v-if="status === LoadStatus.Loaded"
       :items="result.items"
-      :getLocation="(id) => ({ name: 'details', params: { id: id }})"
-    />
+    >
+      <template #item-link="{ item }">
+        <router-link
+          class="stretched-link"
+          :to="{ name: 'details', params: { id: item.id }}"
+        />
+      </template>
+    </MovieList>
     <div v-if="status === LoadStatus.Loading" class="text-center p-5">
       <b-spinner classlabel="Spinning" />
     </div>

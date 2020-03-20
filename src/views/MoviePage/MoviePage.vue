@@ -7,7 +7,7 @@
       v-if="movieItemStatus === LoadStatus.Loaded"
       :item="movieItem"
     >
-      <template v-slot:right-top>
+      <template #right-top>
         <router-link :to="{ name: 'home' }">
           <b-icon-search variant="danger" font-scale="1.5" />
         </router-link>
@@ -18,10 +18,14 @@
       <SubHeaderBlock v-if="genre.items">
         <b>See also best movies of {{ genre.name }}</b>
       </SubHeaderBlock>
-      <MovieList
-        :items="genre.items"
-        :getLocation="(id) => ({ name: 'details', params: { id: id }})"
-      />
+      <MovieList :items="genre.items">
+        <template #item-link="{ item }">
+          <router-link
+            class="stretched-link"
+            :to="{ name: 'details', params: { id: item.id }}"
+          />
+        </template>
+      </MovieList>
     </div>
 
     <div v-if="genresStatus === LoadStatus.Loading" class="text-center p-5">

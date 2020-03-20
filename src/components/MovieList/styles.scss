@@ -1,16 +1,8 @@
 @import '../../styles/common.scss';
 
-.search-result {
+.movie-list {
   background-color: $dark-graphite;
   min-height: 500px;
-
-  &__item {
-    img {
-      width: 100%;
-      height: 525px;
-      object-fit: contain;
-    }
-  }
 
   &__not-found {
     padding: 100px 0;

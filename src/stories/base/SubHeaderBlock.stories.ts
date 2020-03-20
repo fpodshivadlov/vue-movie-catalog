@@ -18,7 +18,7 @@ export const customizable = () => ({
   },
   template: `<SubHeaderBlock>
     <div v-if="showMain">{{ mainText }}</div>
-    <template v-slot:right v-if="showRight">
+    <template #right v-if="showRight">
       <div>{{ rightText }}</div>
     </template>
   </SubHeaderBlock>`,

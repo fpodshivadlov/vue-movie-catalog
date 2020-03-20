@@ -3,7 +3,7 @@
     <div v-if="totalFound">
       <span data-cy="total-found">{{ totalFound }}</span> movie(s) found
     </div>
-    <template v-slot:right>
+    <template #right>
       <ButtonToggle class="px-3"
         label="Sort by"
         v-model="sortBySynced"

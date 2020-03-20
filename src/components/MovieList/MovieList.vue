@@ -1,30 +1,19 @@
 <template>
-  <div class="search-result">
+  <div class="movie-list">
     <b-container class="py-4">
       <b-row v-if="items.length">
         <b-col
           v-for="item in items"
           :key="item.key"
-          class="search-result__item py-3"
           cols="4"
+          class="py-3"
         >
-          <router-link :to="getLocation(item.id)">
-            <img :src="item.poster_path" />
-          </router-link>
-          <div class="d-flex justify-content-between py-1">
-            <div>
-              <div data-cy="movie-title">
-                <h4>{{ item.title }}</h4>
-              </div>
-              <div><small>{{ item.genres.join(", ") }}</small></div>
-            </div>
-            <div class="py-2">
-              <span class="border p-1">{{ item.release_date | year }}</span>
-            </div>
-          </div>
+          <MovieListItem :item="item">
+            <slot name="item-link" :item="item"></slot>
+          </MovieListItem>
         </b-col>
       </b-row>
-      <b-row v-else class="search-result__not-found">
+      <b-row v-else class="movie-list__not-found">
         <b-col class="text-center">
           <h2>No movies found</h2>
         </b-col>
