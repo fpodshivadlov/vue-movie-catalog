@@ -1,9 +1,6 @@
-@import '../../styles/common.scss';
-@import '../../plugins/bootstrapVue.scss';
-
 .movie-overview {
   &__rating div {
-    @include font-size($font-size-base * 1.5);
+    font-size: 28px;
     height: 60px;
     width: 60px;
   }
