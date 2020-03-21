@@ -5,7 +5,3 @@ yarn-*.log*
 
 # artifacts
 **/dist
-mock
-
-docker-compose.yml
-

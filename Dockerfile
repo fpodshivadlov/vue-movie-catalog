@@ -25,4 +25,4 @@ COPY docker-ui.nginx.conf /etc/nginx/conf.d/default.conf.template
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 
 # Run config substitution on start
-CMD /bin/sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+CMD /bin/sh -c "envsubst '\$PORT \$API_PROXY' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
