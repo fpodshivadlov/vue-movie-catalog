@@ -1,3 +1,21 @@
+export enum LoadStatus {
+  NotLoaded = 'NotLoaded',
+  Loading = 'Loading',
+  Loaded = 'Loaded',
+  Error = 'Error',
+}
+
+export interface ErrorLoadResponse {
+  success: false;
+}
+
+export interface SuccessLoadResponse<T> {
+  success: true;
+  data: T;
+}
+
+export type LoadResponse<T> = ErrorLoadResponse | SuccessLoadResponse<T>;
+
 export interface MovieItem {
   id: number;
   title: string;

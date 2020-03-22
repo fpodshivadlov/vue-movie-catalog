@@ -2,11 +2,12 @@ import Vue from 'vue';
 import { Emit, Component } from 'vue-property-decorator';
 import { BvEvent } from 'bootstrap-vue';
 
-import { SearchBy, SortBy, SearchRequest, SortOrder } from '@/types';
-import { LoadStatus, searchMoviesMapper } from '@/store';
+import { SearchBy, SortBy, SearchRequest, SortOrder, LoadStatus } from '@/types';
+import { searchMoviesMapper } from '@/store';
 
 import SubHeaderBlock from '@/components/base/SubHeaderBlock/SubHeaderBlock.vue';
 import ButtonToggle from '@/components/base/ButtonToggle/ButtonToggle.vue';
+import LoadSection from '@/components/base/LoadSection/LoadSection.vue';
 import SearchForm from '@/components/SearchForm/SearchForm.vue';
 import SearchSummary from '@/components/SearchSummary/SearchSummary.vue';
 import Pagination from '@/components/Pagination/Pagination.vue';
@@ -27,7 +28,7 @@ const perPage = 10;
 
 @Component({
   components: {
-    SearchForm, SearchSummary, MovieList, SubHeaderBlock, ButtonToggle, Pagination,
+    SearchForm, SearchSummary, MovieList, SubHeaderBlock, ButtonToggle, Pagination, LoadSection,
   },
 })
 export default class SearchPage extends Mappers {

@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
 
-import { LoadStatus, getMovieMapper, getGenresMapper } from '@/store';
+import { LoadStatus } from '@/types';
+import { getMovieMapper, getGenresMapper } from '@/store';
 
 import SubHeaderBlock from '@/components/base/SubHeaderBlock/SubHeaderBlock.vue';
+import LoadSection from '@/components/base/LoadSection/LoadSection.vue';
 import MovieList from '@/components/MovieList/MovieList.vue';
 import MovieOverview from '@/components/MovieOverview/MovieOverview.vue';
 
@@ -24,7 +26,9 @@ const Mappers = Vue.extend({
 });
 
 @Component<MoviePage>({
-  components: { SubHeaderBlock, MovieList, MovieOverview },
+  components: {
+    SubHeaderBlock, MovieList, MovieOverview, LoadSection,
+  },
   metaInfo() {
     return { title: this.movieItem?.title };
   },

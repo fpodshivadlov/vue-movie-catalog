@@ -1,9 +1,8 @@
 import { Actions, Getters, Mutations, Module, createMapper } from 'vuex-smart-module';
 
-import { MovieItem, SearchBy, SortBy, SortOrder } from '@/types';
+import { MovieItem, SearchBy, SortBy, SortOrder, LoadStatus } from '@/types';
 import MovieApi from '@/services/MovieApi';
 
-import { LoadStatus } from '../types';
 import { setState } from '../helpers';
 
 interface GenreData {
@@ -60,13 +59,19 @@ class GetGenresActions extends Actions<
           limit: 3,
         });
 
-        this.commit('addToList', {
-          name,
-          items: result.items,
-        });
+        if (!result.success) {
+          return false;
+        }
+
+        this.commit('addToList', { name, items: result.data.items });
+        return true;
       });
 
-      await Promise.all(promises);
+      const statuses = await Promise.all(promises);
+      if (!statuses.every((x) => x)) {
+        this.commit('setStatus', LoadStatus.Error);
+        return;
+      }
     }
 
     this.commit('setStatus', LoadStatus.Loaded);
