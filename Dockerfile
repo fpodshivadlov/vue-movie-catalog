@@ -1,5 +1,5 @@
-### STAGE 1: Build ###
-FROM node:12.16-alpine AS build
+### STAGE 1.1: Build frontend ###
+FROM node:12.16-alpine AS build-frontend
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -12,17 +12,37 @@ RUN yarn install
 COPY . .
 
 # Build app
+ARG VUE_APP_BACKEND_BASE_URL=/api/
+RUN yarn build
+
+### STAGE 1.2: Build backend ###
+FROM node:12.16-alpine AS build-backend
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY mock/package.json mock/yarn.lock ./
+RUN yarn install
+
+# Copy app source files
+COPY ./mock .
+
+# Build app
 RUN yarn build
 
 ### STAGE 2: Run ###
-FROM nginx:1.17-alpine
+FROM node:12.16-alpine
+ENV PORT 3000
 
-# Configure nginx
-ENV PORT 80
-COPY docker-ui.nginx.conf /etc/nginx/conf.d/default.conf.template
+# Set app directory
+WORKDIR /usr/app
 
 # Copy artifacts to server
-COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+COPY --from=build-backend /usr/src/app /usr/app
+COPY --from=build-frontend /usr/src/app/dist /usr/app/public
 
-# Run config substitution on start
-CMD /bin/sh -c "envsubst '\$PORT \$API_PROXY' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+EXPOSE 3000
+
+# Run port substitution on start
+CMD node dist/server.js

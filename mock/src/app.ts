@@ -1,5 +1,6 @@
-import express from 'express';
-import { Application } from 'express';
+import { resolve } from 'path';
+
+import express, { Application } from 'express';
 
 class App {
     public app: Application
@@ -12,6 +13,7 @@ class App {
         this.middlewares(appInit.middleWares);
         this.routes(appInit.controllers);
         this.assets();
+        this.routeFallback();
     }
 
     private middlewares(middleWares: { forEach: (arg0: (middleWare: any) => void) => void; }) {
@@ -28,7 +30,12 @@ class App {
 
     private assets() {
         this.app.use(express.static('public'));
-        this.app.use(express.static('views'));
+    }
+
+    private routeFallback() {
+      this.app.get('/*', (_req, res) => {
+        res.sendFile(resolve('public/index.html'));
+      });
     }
 
     public listen() {

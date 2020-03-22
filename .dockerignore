@@ -5,7 +5,7 @@ yarn-*.log*
 
 # artifacts
 **/dist
-mock
 
+# docker files
 docker-compose.yml
-
+heroku.yml

@@ -1,20 +1,6 @@
 version: '3'
 services:
-  movie-catalog-ui:
+  movie-catalog-app:
     build: .
-    container_name: movie-catalog-ui
     ports:
-      - 4200:80
-    environment:
-      API_PROXY: http://movie-catalog-mock:4300/api/
-    depends_on:
-      - movie-catalog-mock
-  movie-catalog-mock:
-    build: ./mock
-    container_name: movie-catalog-mock
-    ports:
-      - ${MOCK_PORT}:${MOCK_PORT}
-    environment:
-      PORT: ${MOCK_PORT}
-    expose:
-      - ${MOCK_PORT}
+      - 4200:3000
