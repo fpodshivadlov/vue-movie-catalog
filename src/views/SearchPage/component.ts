@@ -62,7 +62,7 @@ export default class SearchPage extends Mappers {
   }
 
   created() {
-    this.dispatchGetItems();
+    this.search();
   }
 
   search() {

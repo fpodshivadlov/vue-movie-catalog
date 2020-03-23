@@ -35,7 +35,7 @@ class SearchMoviesActions extends Actions<
   SearchMoviesMutations,
   SearchMoviesActions
 > {
-  async getItems(payload?: SearchRequest) {
+  async getItems(payload: SearchRequest) {
     this.commit('setStatus', LoadStatus.Loading);
     const searchResult = await MovieApi.getMovies(payload);
 
