@@ -19,7 +19,7 @@ Vue.use(VueMeta, {
 });
 
 new Vue({
-  router,
+  router: router(store),
   store,
   render: (h) => h(App),
 }).$mount('#app');

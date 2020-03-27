@@ -38,7 +38,11 @@ class GetMovieActions extends Actions<
     this.getGenres = getGenres.context(store);
   }
 
-  async getItem(payload: string) {
+  async getItem(payload: number) {
+    if (payload === this.state.item?.id) {
+      return;
+    }
+
     this.commit('setStatus', LoadStatus.Loading);
     this.getGenres.dispatch('reset');
 
@@ -51,7 +55,7 @@ class GetMovieActions extends Actions<
     this.commit('updateItem', result.data);
     this.commit('setStatus', LoadStatus.Loaded);
 
-    this.getGenres.dispatch('getItems', result.data.genres);
+    this.getGenres.dispatch('getItems', result.data?.genres);
   }
 }
 

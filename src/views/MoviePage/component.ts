@@ -37,11 +37,11 @@ export default class MoviePage extends Mappers {
   LoadStatus = LoadStatus;
 
   get movieId() {
-    return this.$route.params.id;
+    return parseInt(this.$route.params.id, 10);
   }
 
   @Watch('movieId', { immediate: true })
-  onMovieChanged(movieId: string) {
+  onMovieChanged(movieId: number) {
     this.getItem(movieId);
   }
 }

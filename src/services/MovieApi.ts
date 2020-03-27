@@ -36,13 +36,13 @@ export default {
     }
   },
 
-  getMovie: async (id: string): Promise<LoadResponse<MovieItem>> => {
+  getMovie: async (id: number): Promise<LoadResponse<MovieItem>> => {
     try {
       const response = await instance.get(`/movies/${id}`);
 
       return {
         success: true,
-        data: response.data,
+        data: response.data && response.data.id ? response.data : null,
       };
     } catch {
       return { success: false };
