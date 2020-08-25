@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono|Krub|Poiret+One|Scope+One&display=swap');
+
+$crimson: #f65261;
+$green: #a1e66f;
+$dark-blue: #008ac6;
+$blue: #79d0ff;
+$dark-grey: #424242;
+$dark-graphite: #222222;
+$light-graphite: #555555;
+$light-grey: #555555;
+$white: #ffffff;
+
+$body-bg: $dark-grey;
+$body-color: $white;
+
+$theme-colors: (
+  "primary": $blue,
+  "secondary": $light-grey,
+  "danger": $crimson,
+  "success": $green,
+  "light": $light-graphite,
+  "dark": $dark-graphite,
+  "bg": $body-bg,
+);
+
+$spacer: 1rem !default;
+$spacers: (
+  6: ($spacer * 6),
+  7: ($spacer * 12),
+) !default;
+
+$font-family-sans-serif: 'Krub', sans-serif;
+$font-family-serif: 'Scope One', serif;
+$font-family-monospace: 'Fira Mono', monospace;
+$font-family-base: 'Poiret One', cursive;
+$font-size-base: $spacer * 1.25;
+
+$input-border-width: 0;
+$input-bg: $dark-graphite;

@@ -1,15 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+export * from './modules/searchMovies';
+export * from './modules/getMovie';
+export * from './modules/getGenres';
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+export * from './root';

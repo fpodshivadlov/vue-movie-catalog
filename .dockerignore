@@ -1,0 +1,7 @@
+# packages
+**/node_modules
+npm-*.log*
+yarn-*.log*
+
+# artifacts
+**/dist

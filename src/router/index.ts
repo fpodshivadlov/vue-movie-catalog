@@ -1,29 +1,45 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter, { RouteConfig } from 'vue-router';
+import SearchPage from '../views/SearchPage/SearchPage.vue';
+import NotFoundPage from '../views/NotFoundPage/NotFoundPage.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-const routes = [
+const routes: RouteConfig[] = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'home',
+    component: SearchPage,
+    meta: {
+      title: 'Home',
+    },
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/details/:id',
+    name: 'details',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+    component: () => import(/* webpackChunkName: "details" */ '../views/MoviePage/MoviePage.vue'),
+    meta: {
+      title: 'Movie Details',
+    },
+  },
+  {
+    path: '*',
+    name: 'not-found',
+    component: NotFoundPage,
+    meta: {
+      title: 'Not Found',
+    },
+  },
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+  scrollBehavior: (_to, _from, savedPosition) => savedPosition || { x: 0, y: 0 },
+});
 
-export default router
+export default router;
